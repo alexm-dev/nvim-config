@@ -26,6 +26,7 @@ The current configuration includes flags for:
 - Neovim (recommended 0.8+)
 - LazyVim
 - Git
+- LazyGit
 - optional: node22 installed somewhere under `%LOCALAPPDATA%\node22` or a machine-local path you control (or equivalent on Unix)
 - optional: luarocks (if you use LuaRocks-managed modules)
 
