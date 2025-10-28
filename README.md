@@ -23,7 +23,13 @@ The current configuration includes flags for:
 
 ## Requirements
 
-- Neovim (recommended 0.8+)
+- Neovim (recommended 0.8+) with:
+  - bat
+  - fd
+  - RipGrep
+  - fzf
+  - GCC compiler for treesitter
+- Node.js version 22+ (for some plugins)
 - LazyVim
 - Git
 - LazyGit
