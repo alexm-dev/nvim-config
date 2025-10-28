@@ -21,3 +21,6 @@ require("lsp.hide_clangd_diagnostics")
 --
 -- Lower priority than other highlights to allow them to override
 vim.highlight.priorities.semantic_tokens = 95
+
+-- Enable PowerShell terminal integration
+require("config.pwsh")
