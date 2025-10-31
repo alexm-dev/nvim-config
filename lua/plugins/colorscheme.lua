@@ -41,6 +41,11 @@ return {
                 treesitter_context = true,
                 which_key = true,
             },
+            custom_highlights = function(colors)
+                return {
+                    ["@lsp.type.parameter"] = { link = "@variable.parameter" },
+                }
+            end,
         },
         specs = {
             {
@@ -53,12 +58,7 @@ return {
                 end,
             },
         },
-        config = function(_, opts)
-            require("catppuccin").setup(opts)
-            vim.cmd.colorscheme("catppuccin")
-            -- Enable for custom highlights
-            require("config.highlights")
-        end,
+
     },
     -- Configure LazyVim to load colorscheme
     {
