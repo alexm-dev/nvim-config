@@ -36,13 +36,6 @@ tags
 .local/state/nvim/
 # If you only want to ignore repo-local caches, adjust the above to the specific path(s).
 
-# Plugin manager lock/cache
-# If you want deterministic installs, you MAY want to commit lazy-lock.json; otherwise ignore it.
-lazy-lock.json
-lazy-lock.json.old
-lazy-lock.json.tmp
-
-lazyvim.json
 
 # Node / npm
 node_modules/
