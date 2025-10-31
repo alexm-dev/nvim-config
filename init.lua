@@ -1,4 +1,4 @@
--- Node22 binaries to path
+-- Node24 binaries to path
 if vim.env.LOCALAPPDATA and vim.loop.fs_stat(vim.env.LOCALAPPDATA .. "\\node24") then
     vim.env.PATH = vim.env.LOCALAPPDATA .. "\\node24;" .. (vim.env.PATH or "")
 end
