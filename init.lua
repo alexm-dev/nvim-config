@@ -12,15 +12,13 @@ local lr_cpath = vim.fn.system("luarocks path --lr-cpath"):gsub("\n", "")
 package.path = package.path .. ";" .. lr_path
 package.cpath = package.cpath .. ";" .. lr_cpath
 
--- Clangd settings and plugin
+-- Clangd settings
 require("config.clangd_settings")
-require("plugins.clangd")
 require("lsp.hide_clangd_diagnostics")
 
 -- Colorscheme
---
--- Lower priority than other highlights to allow them to override
-vim.highlight.priorities.semantic_tokens = 95
+-- require("config.highlights")
+vim.highlight.priorities.semantic_tokens = 94
 
 -- Enable PowerShell terminal integration
 require("config.pwsh")
