@@ -12,7 +12,7 @@ git clone https://github.com/alexm-dev/My-lazyvim-configs
 
 ### Node.js configuration
 
-Node.js 24+ (LTS) is recommended, but
+Node.js 24+ (LTS) is recommended.
 
 Node.js 22+ is needed for some plugins to work.
 Node.js can be installed via Scoop, nvm, or any other method you prefer.
