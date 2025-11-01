@@ -63,7 +63,7 @@ Used the starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
 Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
 
 
-Saving this:
+## Saving this:
 
 ```lua
 -- Windows: Remove the machine-wide Node.js path from PATH (session-only).
@@ -81,16 +81,11 @@ if vim.fn.has("win32") == 1 then
     local machine_wide_target = norm(machine_wide_node)
 
     local path = vim.env.PATH or ""
-    local kept = {}
 
-    -- Remove the machine-wide Node.js path
-    for entry in path:gmatch("([^;]+)") do
-        if norm(entry) ~= machine_wide_target then
-            table.insert(kept, entry)
-        end
+    -- Use path:find to check if the machine-wide Node.js path exists
+    if path:find(machine_wide_target, 1, true) then
+        -- Rebuild PATH without the machine-wide Node.js path
+        vim.env.PATH = path:gsub(";" .. machine_wide_target, ""):gsub(machine_wide_target .. ";", ""):gsub(machine_wide_target, "")
     end
-
-    -- Rebuild PATH without the machine-wide Node.js path
-    vim.env.PATH = table.concat(kept, ";")
 end
 ```
