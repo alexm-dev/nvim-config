@@ -26,8 +26,6 @@ Make sure to adjust it according to your installation.
 - Make sure to adjust the following lines in lua/config/node_path.lua if needed:
 
 ```lua
-```
-```lua
 local scoop = vim.env.SCOOP or (home .. "\\scoop")
 local node_dir = scoop .. "\\apps\\nodejs-lts\\current"
 ```
