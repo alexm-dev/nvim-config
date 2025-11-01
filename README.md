@@ -24,7 +24,7 @@ Make sure to adjust it according to your installation.
 - However, if you have Node.js installed via nvm or another method, you may need to modify the node_path.lua file to point to the correct Node.js binary.
 - Also, when Node.js 22+ is installed via msi installer, then you can remove the node_path.lua file and remove the require line from lua/config/init.lua.
 
-- Make sure to adjust the following lines in lua/config/node_path.lua if needed:
+Make sure to adjust the following lines in lua/config/node_path.lua if needed:
 
 ```lua
 local scoop = vim.env.SCOOP or (home .. "\\scoop")
