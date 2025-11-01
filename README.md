@@ -6,14 +6,33 @@ Clone this repository to your Neovim configuration directory:
 
 ```bash
 git clone https://github.com/alexm-dev/My-lazyvim-configs
-
-```
+d```
 
 ## Setup
 
-In the clangd.lua file, set either the path to the mingw64 gcc dir or remove the --query-driver flag if you don't need it.
+### Node.js configuration
 
-## Clangd flags
+Node.js 24+ (LTS) is recommended, but
+
+Node.js 22+ is needed for some plugins to work.
+Node.js can be installed via Scoop, nvm, or any other method you prefer.
+The [node_path.lua] file contains logic to set the node path for Neovim.
+Make sure to adjust it according to your installation.
+
+- If you have Node.js 22+ installed via Scoop, no changes are needed.
+- However, if you have Node.js installed via nvm or another method, you may need to modify the node_path.lua file to point to the correct Node.js binary.
+- Also, when Node.js 22+ is installed via msi installer, then you can remove the node_path.lua file and remove the require line from lua/config/init.lua.
+
+- Make sure to adjust the following lines in lua/config/node_path.lua if needed:
+```
+local scoop = vim.env.SCOOP or (home .. "\\scoop")
+local node_dir = scoop .. "\\apps\\nodejs-lts\\current"
+```lua
+```
+
+### Clangd flags
+
+In the clangd.lua file, set either the path to the mingw64 gcc dir or remove the --query-driver flag if you don't need it.
 
 In the lua/lsp/clangd_flags.lua file, you can customize the clangd flags according to your needs.
 The current configuration includes flags for:
@@ -29,11 +48,12 @@ The current configuration includes flags for:
   - RipGrep
   - fzf
   - GCC compiler for treesitter
+  - tree-sitter-cli (can be installed via npm or cargo)
+  - ast-grep
 - Node.js version 22+ (for some plugins)
 - LazyVim
 - Git
 - LazyGit
-- optional: node22 installed somewhere under `%LOCALAPPDATA%\node22` or a machine-local path you control (or equivalent on Unix)
 - optional: luarocks (if you use LuaRocks-managed modules)
 
 ## 💤 LazyVim
