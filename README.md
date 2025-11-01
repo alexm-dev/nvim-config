@@ -16,7 +16,7 @@ Node.js 24+ (LTS) is recommended.
 
 Node.js 22+ is needed for some plugins to work.
 Node.js can be installed via Scoop, nvm, or any other method you prefer.
-The [node_path.lua] file contains logic to set the node path for Neovim.
+The **`node_path.lua`** file contains logic to set the node path for Neovim.
 Make sure to adjust it according to your installation.
 
 - If you have Node.js 22+ installed via Scoop, no changes are needed.
