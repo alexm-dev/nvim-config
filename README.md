@@ -6,7 +6,7 @@ Clone this repository to your Neovim configuration directory:
 
 ```bash
 git clone https://github.com/alexm-dev/My-lazyvim-configs
-d```
+```
 
 ## Setup
 
@@ -24,10 +24,12 @@ Make sure to adjust it according to your installation.
 - Also, when Node.js 22+ is installed via msi installer, then you can remove the node_path.lua file and remove the require line from lua/config/init.lua.
 
 - Make sure to adjust the following lines in lua/config/node_path.lua if needed:
+
+```lua
 ```
+```lua
 local scoop = vim.env.SCOOP or (home .. "\\scoop")
 local node_dir = scoop .. "\\apps\\nodejs-lts\\current"
-```lua
 ```
 
 ### Clangd flags
