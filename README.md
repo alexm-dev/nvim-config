@@ -61,3 +61,36 @@ The current configuration includes flags for:
 
 Used the starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
 Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+
+
+Saving this:
+
+```lua
+-- Windows: Remove the machine-wide Node.js path from PATH (session-only).
+if vim.fn.has("win32") == 1 then
+    local uv = vim.uv or vim.loop
+    local function norm(p)
+        return (p or "")
+            :gsub('^"(.-)"$', '%1') -- strip surrounding quotes
+            :gsub("/", "\\")         -- normalize slashes
+            :gsub("([^:])\\+$", "%1") -- strip trailing backslashes
+            :lower()
+    end
+
+    local machine_wide_node = "C:\\Program Files\\nodejs" -- Adjust this path if needed
+    local machine_wide_target = norm(machine_wide_node)
+
+    local path = vim.env.PATH or ""
+    local kept = {}
+
+    -- Remove the machine-wide Node.js path
+    for entry in path:gmatch("([^;]+)") do
+        if norm(entry) ~= machine_wide_target then
+            table.insert(kept, entry)
+        end
+    end
+
+    -- Rebuild PATH without the machine-wide Node.js path
+    vim.env.PATH = table.concat(kept, ";")
+end
+```
