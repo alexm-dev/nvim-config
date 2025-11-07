@@ -3,19 +3,19 @@
 
 local M = {}
 M.flags = {
+    "-xc++",
     "-std=c++17",
+
+    "-fms-extensions",
+    "-fms-compatibility",
+
+    "--target=x86_64-pc-windows-msvc",
+
     "-D_WIN32",
     "-DWIN32",
-
-    "--target=x86_64-w64-mingw32",
-    "-D__MINGW32__",
-    "-D__MINGW64__",
-    "-D__USE_MINGW_ANSI_STDIO=1",
-    "-D__STDC_WANT_LIB_EXT1__=1",
-    "-IC:/msys64/mingw64/include/c++/15.2.0",
-    "-IC:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32",
-    "-IC:/msys64/mingw64/include",
-    "-IC:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include",
+    "-DWIN32_LEAN_AND_MEAN",
+    "-D_CRT_SECURE_NO_WARNINGS",
+    "-D_SCL_SECURE_NO_WARNINGS",
 }
 
 return M
