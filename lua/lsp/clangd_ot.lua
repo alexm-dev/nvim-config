@@ -17,7 +17,7 @@ M.flags = {
     "-D_SCL_SECURE_NO_WARNINGS",
 
     -- Debug iterator level
-    "-D_ITERATOR_DEBUG_LEVEL=2",
+    --"-D_ITERATOR_DEBUG_LEVEL=2",
     -- Release iterator level
     --"-D_ITERATOR_DEBUG_LEVEL=0",
 
@@ -26,8 +26,6 @@ M.flags = {
     -- OpenTwin Services
     "-IC:/OT/OpenTwin/Services/FDTDService/include",
     "-IC:/OT/OpenTwin/Services/FDTDService/include/Excitation",
-    "-IC:/OT/OpenTwin/Services/FDTDService/src",
-    "-IC:/OT/OpenTwin/Services/FDTDService/src/Excitation",
 
     -- OpenTwin Libraries
     "-IC:/OT/OpenTwin/Libraries/OTCore/include",
