@@ -24,8 +24,12 @@ local notify = vim.notify
 
 -- Find pwsh or powershell on PATH
 local function find_pwsh()
-    if fn.executable("pwsh") == 1 then return "pwsh" end
-    if fn.executable("powershell") == 1 then return "powershell" end
+    if fn.executable("pwsh") == 1 then
+        return "pwsh"
+    end
+    if fn.executable("powershell") == 1 then
+        return "powershell"
+    end
     return nil
 end
 
@@ -36,9 +40,13 @@ local function build_cmd_tbl(args)
         notify("[pwsh-term] could not find 'pwsh' or 'powershell' on PATH", vim.log.levels.ERROR)
         return nil
     end
-    if not args or #args == 0 then return { pw } end
+    if not args or #args == 0 then
+        return { pw }
+    end
     local t = { pw }
-    for _, a in ipairs(args) do table.insert(t, a) end
+    for _, a in ipairs(args) do
+        table.insert(t, a)
+    end
     return t
 end
 
@@ -62,7 +70,9 @@ end
 --  - <CR> in normal -> close/delete terminal buffer & windows
 --  - q in normal -> same as <CR>
 local function attach_mappings(term_buf, prev_win, allow_close)
-    if not term_buf then return end
+    if not term_buf then
+        return
+    end
 
     pcall(function()
         vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { buffer = term_buf, noremap = true, silent = true })
@@ -74,7 +84,9 @@ local function attach_mappings(term_buf, prev_win, allow_close)
         else
             pcall(api.nvim_win_close, api.nvim_get_current_win(), true)
         end
-        if prev_win and api.nvim_win_is_valid(prev_win) then pcall(api.nvim_set_current_win, prev_win) end
+        if prev_win and api.nvim_win_is_valid(prev_win) then
+            pcall(api.nvim_set_current_win, prev_win)
+        end
     end
 
     -- <CR> should close when allowed (splits/floats)
@@ -92,7 +104,9 @@ end
 
 -- Attach TermClose autocmd for fallback (:terminal) flow
 local function attach_termclose_autocmd(term_buf, prev_win, allow_close)
-    if not term_buf then return end
+    if not term_buf then
+        return
+    end
     api.nvim_create_autocmd("TermClose", {
         buffer = term_buf,
         once = true,
@@ -103,10 +117,14 @@ local function attach_termclose_autocmd(term_buf, prev_win, allow_close)
                 else
                     local wins = fn.win_findbuf(term_buf)
                     if type(wins) == "table" and #wins == 0 then
-                        if api.nvim_buf_is_valid(term_buf) then pcall(api.nvim_buf_delete, term_buf, { force = true }) end
+                        if api.nvim_buf_is_valid(term_buf) then
+                            pcall(api.nvim_buf_delete, term_buf, { force = true })
+                        end
                     end
                 end
-                if prev_win and api.nvim_win_is_valid(prev_win) then pcall(api.nvim_set_current_win, prev_win) end
+                if prev_win and api.nvim_win_is_valid(prev_win) then
+                    pcall(api.nvim_set_current_win, prev_win)
+                end
             end)
         end,
     })
@@ -135,27 +153,37 @@ local function start_terminal_in_current_buf(cmd_tbl, prev_win, allow_close)
                 else
                     local wins = fn.win_findbuf(bufnr)
                     if type(wins) == "table" and #wins == 0 then
-                        if api.nvim_buf_is_valid(bufnr) then pcall(api.nvim_buf_delete, bufnr, { force = true }) end
+                        if api.nvim_buf_is_valid(bufnr) then
+                            pcall(api.nvim_buf_delete, bufnr, { force = true })
+                        end
                     end
                 end
-                if prev_win and api.nvim_win_is_valid(prev_win) then pcall(api.nvim_set_current_win, prev_win) end
+                if prev_win and api.nvim_win_is_valid(prev_win) then
+                    pcall(api.nvim_set_current_win, prev_win)
+                end
             end)
         end,
     }
 
     -- Try fn.termopen safely
-    local ok, job_or_err = pcall(function() return fn.termopen(cmd_tbl, job_opts) end)
+    local ok, job_or_err = pcall(function()
+        return fn.termopen(cmd_tbl, job_opts)
+    end)
     if ok and job_or_err and job_or_err ~= 0 then
         -- started via termopen
-        pcall(function() cmd("startinsert") end)
+        pcall(function()
+            cmd("startinsert")
+        end)
         local term_buf = api.nvim_get_current_buf()
         attach_mappings(term_buf, prev_win, allow_close)
         return term_buf, job_or_err
     end
 
     -- Fallback: :terminal (string form)
-    notify("[pwsh-term] termopen unavailable/failed: " .. tostring(job_or_err) .. " — falling back to :terminal",
-        vim.log.levels.WARN)
+    notify(
+        "[pwsh-term] termopen unavailable/failed: " .. tostring(job_or_err) .. " — falling back to :terminal",
+        vim.log.levels.WARN
+    )
     local term_cmd_str
     if type(cmd_tbl) == "table" then
         term_cmd_str = table.concat(cmd_tbl, " ")
@@ -163,13 +191,17 @@ local function start_terminal_in_current_buf(cmd_tbl, prev_win, allow_close)
         term_cmd_str = tostring(cmd_tbl)
     end
 
-    local ok2 = pcall(function() cmd("terminal " .. term_cmd_str) end)
+    local ok2 = pcall(function()
+        cmd("terminal " .. term_cmd_str)
+    end)
     if not ok2 then
         notify("[pwsh-term] fallback :terminal failed for: " .. term_cmd_str, vim.log.levels.ERROR)
         return nil, nil
     end
 
-    pcall(function() cmd("startinsert") end)
+    pcall(function()
+        cmd("startinsert")
+    end)
     local term_buf = api.nvim_get_current_buf()
     -- fallback: attach TermClose autocmd and mappings
     attach_termclose_autocmd(term_buf, prev_win, allow_close)
@@ -208,9 +240,13 @@ end
 local function open_term_in_split(cmd_tbl, kind)
     local prev_win = api.nvim_get_current_win()
     if kind == "vsplit" then
-        pcall(function() cmd("vsplit") end)
+        pcall(function()
+            cmd("vsplit")
+        end)
     else
-        pcall(function() cmd("split") end)
+        pcall(function()
+            cmd("split")
+        end)
     end
 
     -- Now the new split is current; put a scratch buffer there and start terminal
@@ -256,7 +292,9 @@ local function open_float_term(cmd_tbl)
     local ok, win = pcall(api.nvim_open_win, buf, true, win_opts)
     if not ok or not win then
         notify("[pwsh-term] failed to open floating window", vim.log.levels.ERROR)
-        if api.nvim_buf_is_valid(buf) then pcall(api.nvim_buf_delete, buf, { force = true }) end
+        if api.nvim_buf_is_valid(buf) then
+            pcall(api.nvim_buf_delete, buf, { force = true })
+        end
         return nil
     end
 
@@ -264,8 +302,12 @@ local function open_float_term(cmd_tbl)
     pcall(api.nvim_set_current_win, win)
     local term_buf, job = start_terminal_in_current_buf(cmd_tbl, prev_win, true)
     if not term_buf then
-        if api.nvim_win_is_valid(win) then pcall(api.nvim_win_close, win, true) end
-        if api.nvim_win_is_valid(prev_win) then pcall(api.nvim_set_current_win, prev_win) end
+        if api.nvim_win_is_valid(win) then
+            pcall(api.nvim_win_close, win, true)
+        end
+        if api.nvim_win_is_valid(prev_win) then
+            pcall(api.nvim_set_current_win, prev_win)
+        end
         return nil
     end
 
@@ -273,7 +315,9 @@ local function open_float_term(cmd_tbl)
     pcall(function()
         vim.keymap.set("n", "<CR>", function()
             close_all_windows_and_delete_buf(term_buf)
-            if prev_win and api.nvim_win_is_valid(prev_win) then pcall(api.nvim_set_current_win, prev_win) end
+            if prev_win and api.nvim_win_is_valid(prev_win) then
+                pcall(api.nvim_set_current_win, prev_win)
+            end
         end, { buffer = term_buf, noremap = true, silent = true })
     end)
 
@@ -283,33 +327,59 @@ end
 -- User commands
 api.nvim_create_user_command("PwshTerm", function(opts)
     local cmd_tbl = build_cmd_tbl(opts.fargs)
-    if not cmd_tbl then return end
+    if not cmd_tbl then
+        return
+    end
     open_term_in_current(cmd_tbl)
 end, { nargs = "*", desc = "Open pwsh in the current window (does not auto-close window)" })
 
 api.nvim_create_user_command("Pwsh", function(opts)
     local cmd_tbl = build_cmd_tbl(opts.fargs)
-    if not cmd_tbl then return end
+    if not cmd_tbl then
+        return
+    end
     open_term_in_split(cmd_tbl, "split")
 end, { nargs = "*", desc = "Open pwsh in a horizontal split (auto-closes on exit)" })
 
 api.nvim_create_user_command("PwshVsplit", function(opts)
     local cmd_tbl = build_cmd_tbl(opts.fargs)
-    if not cmd_tbl then return end
+    if not cmd_tbl then
+        return
+    end
     open_term_in_split(cmd_tbl, "vsplit")
 end, { nargs = "*", desc = "Open pwsh in a vertical split (auto-closes on exit)" })
 
 api.nvim_create_user_command("PwshFloat", function(opts)
     local cmd_tbl = build_cmd_tbl(opts.fargs)
-    if not cmd_tbl then return end
+    if not cmd_tbl then
+        return
+    end
     open_float_term(cmd_tbl)
 end, { nargs = "*", desc = "Open pwsh in a floating terminal (auto-closes on exit)" })
 
 -- Default keymaps (feel free to override in your config)
 local map_opts = { noremap = true, silent = true }
-pcall(function() vim.keymap.set("n", "<leader>tp", ":PwshFloat<CR>",
-        vim.tbl_extend("force", map_opts, { desc = "Open pwsh (float)" })) end)
-pcall(function() vim.keymap.set("n", "<leader>ts", ":Pwsh<CR>",
-        vim.tbl_extend("force", map_opts, { desc = "Open pwsh (split)" })) end)
-pcall(function() vim.keymap.set("n", "<leader>tv", ":PwshVsplit<CR>",
-        vim.tbl_extend("force", map_opts, { desc = "Open pwsh (vsplit)" })) end)
+pcall(function()
+    vim.keymap.set(
+        "n",
+        "<leader>tp",
+        ":PwshFloat<CR>",
+        vim.tbl_extend("force", map_opts, { desc = " Open pwsh (float)" })
+    )
+end)
+pcall(function()
+    vim.keymap.set(
+        "n",
+        "<leader>ts",
+        ":Pwsh<CR>",
+        vim.tbl_extend("force", map_opts, { desc = " Open pwsh (split)" })
+    )
+end)
+pcall(function()
+    vim.keymap.set(
+        "n",
+        "<leader>tv",
+        ":PwshVsplit<CR>",
+        vim.tbl_extend("force", map_opts, { desc = " Open pwsh (vsplit)" })
+    )
+end)
