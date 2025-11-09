@@ -5,15 +5,16 @@ return {
             picker = {
                 sources = {
                     explorer = {
+                        replace_netrw = false,
                         layout = {
                             preview = "main",
                             pos = "left",
-                            width = 40,
                         },
                         win = {
                             list = {
                                 keys = {
                                     ["u"] = "explorer_up",
+                                    ["-"] = "explorer_up",
                                 },
                             },
                         },

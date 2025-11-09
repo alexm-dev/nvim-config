@@ -14,5 +14,8 @@ map("v", "<C-d>", "<Cmd>t'> <CR>", { desc = "Duplicate selection below" })
 
 -- Snacks explorer floating layout
 map("n", "<leader>E", function()
-    Snacks.picker("explorer", { layout = "floating" })
+    Snacks.picker("explorer", { layout = "floating", auto_close = true })
 end, { desc = "Explorer Snacks (Floating)" })
+
+-- Oil explorer keymaps
+map("n", "<leader>o", "<Cmd>Oil<CR>", { desc = "Open Oil Explorer" })
