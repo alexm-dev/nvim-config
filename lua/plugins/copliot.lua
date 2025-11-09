@@ -6,7 +6,7 @@ return {
             suggestion = {
                 enabled = true,
                 auto_trigger = false,
-                debounce = 200,
+                debounce = 100,
             },
             panel = { enabled = true },
         },

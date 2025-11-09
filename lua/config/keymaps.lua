@@ -11,3 +11,8 @@ map("n", "<C-d>", "yyp", { desc = "Duplicate current line below" })
 -- Visual mode: duplicate selected lines below
 -- Uses Ex range :t' to copy the visual selection after itself
 map("v", "<C-d>", "<Cmd>t'> <CR>", { desc = "Duplicate selection below" })
+
+-- Snacks explorer floating layout
+map("n", "<leader>E", function()
+    Snacks.picker("explorer", { layout = "floating" })
+end, { desc = "Explorer Snacks (Floating)" })
