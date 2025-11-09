@@ -1,5 +1,3 @@
--- Set compile commands directory for clangd based on current working directory
--- Uses CMake build/debug as the compile commands directory
 local fn = vim.fn
 local build_dir = fn.fnamemodify(fn.getcwd() .. "/build/debug", ":p")
 
