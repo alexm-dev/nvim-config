@@ -11,4 +11,4 @@ vim.o.expandtab = true
 
 -- Tab title
 vim.o.title = true
-vim.o.titlestring = "%t"
+vim.o.titlestring = "nvim"
