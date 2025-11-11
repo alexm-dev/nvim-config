@@ -3,7 +3,7 @@ return {
     {
         "catppuccin/nvim",
         lazy = false,
-        priority = 1000,
+        --- priority = 1000,
         name = "catppuccin",
         opts = {
             flavour = "mocha", -- latte, frappe, macchiato, mocha
@@ -58,13 +58,20 @@ return {
                 end,
             },
         },
-
     },
+
+    {
+        "EdenEast/nightfox.nvim",
+        priority = 1000,
+        lazy = false,
+        opts = {},
+    },
+
     -- Configure LazyVim to load colorscheme
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "catppuccin",
+            colorscheme = "carbonfox",
         },
-    }
+    },
 }
