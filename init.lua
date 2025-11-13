@@ -2,7 +2,7 @@
 require("config.lazy")
 
 -- Colorscheme
--- require("config.highlights")
+require("config.highlights")
 vim.highlight.priorities.semantic_tokens = 94
 
 -- Enable PowerShell terminal integration
