@@ -346,29 +346,24 @@ api.nvim_create_user_command("PwshFloat", function(opts)
     open_float_term(cmd_tbl)
 end, { nargs = "*", desc = "Open pwsh in a floating terminal (auto-closes on exit)" })
 
--- Default keymaps (feel free to override in your config)
+-- -- Default keymaps (feel free to override in your config)
 local map_opts = { noremap = true, silent = true }
+-- pcall(function()
+--     vim.keymap.set(
+--         "n",
+--         "<leader>tp",
+--         ":PwshFloat<CR>",
+--         vim.tbl_extend("force", map_opts, { desc = "Open pwsh (float)" })
+--     )
+-- end)
 pcall(function()
-    vim.keymap.set(
-        "n",
-        "<leader>tp",
-        ":PwshFloat<CR>",
-        vim.tbl_extend("force", map_opts, { desc = " Open pwsh (float)" })
-    )
+    vim.keymap.set("n", "<leader>td", ":Pwsh<CR>", vim.tbl_extend("force", map_opts, { desc = "Open pwsh (split)" }))
 end)
-pcall(function()
-    vim.keymap.set(
-        "n",
-        "<leader>ts",
-        ":Pwsh<CR>",
-        vim.tbl_extend("force", map_opts, { desc = " Open pwsh (split)" })
-    )
-end)
-pcall(function()
-    vim.keymap.set(
-        "n",
-        "<leader>tv",
-        ":PwshVsplit<CR>",
-        vim.tbl_extend("force", map_opts, { desc = " Open pwsh (vsplit)" })
-    )
-end)
+-- pcall(function()
+--     vim.keymap.set(
+--         "n",
+--         "<leader>tv",
+--         ":PwshVsplit<CR>",
+--         vim.tbl_extend("force", map_opts, { desc = "Open pwsh (vsplit)" })
+--     )
+-- end)
