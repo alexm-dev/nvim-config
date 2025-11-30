@@ -15,12 +15,13 @@ return {
                         title = "",
                     },
                 },
+                inline = true,
             },
             views = {
                 cmdline_popup = {
                     relative = "editor",
                     position = {
-                        row = -2,
+                        row = -1,
                         col = 0,
                     },
                     size = {

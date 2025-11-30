@@ -1,18 +1,22 @@
 return {
     {
         "zbirenbaum/copilot.lua",
-        event = "InsertEnter",
-        dependencies = { "copilotlsp-nvim/copilot-lsp" },
+        cmd = "Copilot",
+        -- dependencies = { "copilotlsp-nvim/copilot-lsp" },
         opts = {
             suggestion = {
-                enabled = true,
+                enabled = false,
                 auto_trigger = false,
                 debounce = 600,
             },
             panel = { enabled = true },
             nes = {
-                enalbed = true,
+                enalbed = false,
             },
+        },
+        keys = {
+            { "<leader>ce", "<cmd>Copilot enable<CR>", desc = "Enable Copilot" },
+            { "<leader>cw", "<cmd>Copilot disable<CR>", desc = "Enable Copilot" },
         },
     },
 }
