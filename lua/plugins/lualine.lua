@@ -36,7 +36,13 @@ return {
                 },
             },
             sections = {
-                lualine_x = {},
+                lualine_x = {
+                    {
+                        "lsp_status",
+                        show_name = false,
+                        icon = " ",
+                    },
+                },
                 lualine_z = {},
             },
         },

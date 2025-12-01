@@ -9,7 +9,7 @@ return {
                 long_message_to_split = true,
             },
             cmdline = {
-                view = "cmdline_popup",
+                view = "cmdline",
                 format = {
                     cmdline = {
                         title = "",
