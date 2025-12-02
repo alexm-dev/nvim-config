@@ -24,6 +24,8 @@ return {
                     SnacksPickerBorder = { fg = "#131313", bg = "#131313" },
                     SnacksPickerTitle = { fg = "fg3", bg = "#131313" },
                     NormalFloat = { bg = "#131313" },
+                    LspReferenceText = { bg = "#444444" },
+                    LspReferenceRead = { bg = "#444444" },
                 },
             },
         },

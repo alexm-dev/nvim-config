@@ -4,8 +4,8 @@ return {
         event = "VeryLazy",
         opts = {
             options = {
-                section_separators = "",
-                -- component_separators = "|",
+                section_separators = { left = "|", Right = "|" },
+                component_separators = { left = "|", Right = "|" },
                 globalstatus = true,
                 theme = {
                     normal = {
@@ -36,11 +36,17 @@ return {
                 },
             },
             sections = {
-                lualine_a = { "mode" },
-                lualine_b = {},
+                lualine_a = {
+                    {
+                        "mode",
+                    },
+                },
+                lualine_b = { "diff" },
                 -- lualine_c = {},
                 lualine_x = {
-                    "branch",
+                    {
+                        "branch",
+                    },
                     {
                         "lsp_status",
                         icon = "",
