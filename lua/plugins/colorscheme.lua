@@ -1,5 +1,4 @@
 return {
-    -- add colorscheme
     {
         "catppuccin/nvim",
         lazy = false,
@@ -9,15 +8,22 @@ return {
             flavour = "mocha", -- latte, frappe, macchiato, mocha
         },
     },
-
+    {
+        "nyoom-engineering/oxocarbon.nvim",
+        lazy = false,
+    },
     {
         "EdenEast/nightfox.nvim",
         priority = 1000,
         lazy = false,
         opts = {
-            palettes = {
+            groups = {
                 carbonfox = {
-                    bg1 = "#111111",
+                    FloatBorder = { fg = "#131313", bg = "#131313" },
+                    FloatTitle = { fg = "fg3", bg = "#131313" },
+                    SnacksPickerBorder = { fg = "#131313", bg = "#131313" },
+                    SnacksPickerTitle = { fg = "fg3", bg = "#131313" },
+                    NormalFloat = { bg = "#131313" },
                 },
             },
         },
