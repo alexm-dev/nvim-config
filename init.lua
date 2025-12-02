@@ -7,5 +7,3 @@ vim.highlight.priorities.semantic_tokens = 94
 
 -- Enable PowerShell terminal integration
 require("config.pwsh")
-
-require("config.inline-hints")

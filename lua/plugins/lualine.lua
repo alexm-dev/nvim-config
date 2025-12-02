@@ -36,11 +36,19 @@ return {
                 },
             },
             sections = {
+                lualine_a = { "mode" },
+                lualine_b = {},
+                -- lualine_c = {},
                 lualine_x = {
+                    "branch",
                     {
                         "lsp_status",
+                        icon = "",
+                        symbols = {
+                            spinner = {},
+                            done = "",
+                        },
                         show_name = false,
-                        icon = " ",
                     },
                 },
                 lualine_z = {},

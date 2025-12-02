@@ -19,3 +19,10 @@ end, { desc = "Explorer Snacks (Floating)" })
 
 -- Oil explorer keymaps
 map("n", "<leader>o", "<Cmd>Oil<CR>", { desc = "Open Oil Explorer" })
+
+-- Inlay hints toggle
+map("n", "<leader>ih", function()
+    local bufnr = 0 -- current buffer
+    local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
+    vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
+end, { desc = "Toggle LSP inlay hints" })
