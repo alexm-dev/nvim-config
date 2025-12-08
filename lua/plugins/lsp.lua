@@ -19,6 +19,9 @@ return {
                     capabilities = { offsetEncoding = { "utf-16" } },
                 },
             },
+            inlay_hints = {
+                enabled = false,
+            },
         },
     },
 }
