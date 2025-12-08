@@ -8,15 +8,31 @@ return {
             flavour = "mocha", -- latte, frappe, macchiato, mocha
         },
     },
+
     {
-        "nyoom-engineering/oxocarbon.nvim",
-        lazy = false,
+        "ellisonleao/gruvbox.nvim",
+        priority = 1000,
+        opts = {
+            palette_overrides = {
+                dark0 = "#1d2021",
+            },
+            overrides = {},
+        },
+        config = function(_, opts)
+            require("gruvbox").setup(opts)
+        end,
     },
+
     {
         "EdenEast/nightfox.nvim",
         priority = 1000,
         lazy = false,
         opts = {
+            palettes = {
+                carbonfox = {
+                    bg1 = "#111111",
+                },
+            },
             groups = {
                 carbonfox = {
                     FloatBorder = { fg = "#131313", bg = "#131313" },
@@ -38,7 +54,7 @@ return {
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "carbonfox",
+            colorscheme = "gruvbox",
         },
     },
 }
