@@ -12,11 +12,16 @@ return {
     {
         "ellisonleao/gruvbox.nvim",
         priority = 1000,
+        lazy = false,
         opts = {
             palette_overrides = {
                 dark0 = "#1d2021",
             },
-            overrides = {},
+            overrides = {
+                FloatBorder = { fg = "#1d2021" },
+                FloatTitle = { fg = "#1d2021" },
+                SnacksPickerBorder = { fg = "#1d2021" },
+            },
         },
         config = function(_, opts)
             require("gruvbox").setup(opts)
@@ -25,7 +30,7 @@ return {
 
     {
         "EdenEast/nightfox.nvim",
-        priority = 1000,
+        -- priority = 1000,
         lazy = false,
         opts = {
             palettes = {
