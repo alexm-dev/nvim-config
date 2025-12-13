@@ -14,9 +14,7 @@ return {
         priority = 1000,
         lazy = false,
         opts = {
-            palette_overrides = {
-                dark0 = "#1d2021",
-            },
+            contrast = "hard",
             overrides = {
                 FloatBorder = { fg = "#1d2021" },
                 FloatTitle = { fg = "#1d2021" },
