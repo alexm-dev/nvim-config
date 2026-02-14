@@ -1,6 +1,7 @@
 return {
     {
         "saghen/blink.cmp",
+        build = "cargo build --release",
         opts = {
             keymap = {
                 preset = "super-tab",
@@ -10,6 +11,9 @@ return {
                 ghost_text = {
                     enabled = false,
                 },
+            },
+            fuzzy = {
+                implementation = "lua",
             },
         },
     },

@@ -1,7 +1,7 @@
 return {
     {
         "nvim-lualine/lualine.nvim",
-        event = "VeryLazy",
+        lazy = false,
         opts = {
             options = {
                 section_separators = { left = "|", Right = "|" },
@@ -36,29 +36,22 @@ return {
                 },
             },
             sections = {
-                lualine_a = {
-                    {
-                        "mode",
-                    },
-                },
-                lualine_b = { "diff" },
-                -- lualine_c = {},
-                lualine_x = {
-                    {
-                        "branch",
-                    },
-                    {
-                        "lsp_status",
-                        icon = "",
-                        symbols = {
-                            spinner = {},
-                            done = "",
-                        },
-                        show_name = false,
-                    },
-                },
-                lualine_z = {},
+                lualine_a = {},
+                lualine_b = { "filename", "diff" },
+                lualine_c = { "diagnostics" },
+                lualine_x = { "branch", "filetype" },
+                lualine_y = {},
+                lualine_z = { "location" },
             },
+            inactive_sections = {
+                lualine_a = {},
+                lualine_b = {},
+                lualine_c = { "filename" },
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = { "location" },
+            },
+            extensions = {},
         },
     },
 }

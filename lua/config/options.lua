@@ -1,14 +1,36 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+local global = vim.g
+local o = vim.opt
 
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.softtabstop = 4
+o.number = true
+o.relativenumber = false
+o.clipboard = "unnamedplus"
+o.syntax = "on"
+o.autoindent = true
+o.cursorline = true
+o.cursorlineopt = "both"
+o.encoding = "UTF-8"
+o.tabstop = 4
+o.shiftwidth = 4
+o.softtabstop = 4
+o.smartindent = true
+o.expandtab = true
+o.ruler = true
+o.mouse = "a"
+o.title = true
+o.hidden = true
+o.ttimeoutlen = 0
+o.wildmenu = true
+o.showcmd = true
+o.showmatch = true
+o.inccommand = "split"
+o.splitright = true
+o.splitbelow = true
+o.termguicolors = true
+o.signcolumn = "yes"
+o.statuscolumn = "%s%l  "
+o.fillchars = "eob: "
 
-vim.o.smartindent = true
-vim.o.expandtab = true
-
--- Tab title
-vim.o.title = true
-vim.o.titlestring = "nvim"
+o.undofile = true
+local undo_dir = vim.fn.stdpath("data") .. "/undo"
+vim.fn.mkdir(undo_dir, "p")
+o.undodir = undo_dir

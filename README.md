@@ -17,16 +17,6 @@ Node.js 24+ (LTS) is recommended.
 Node.js 22+ is needed for some plugins to work.
 Node.js can be installed via Scoop, nvm, or any other method you prefer.
 
-### Clangd flags
-
-In the clangd.lua file, set either the path to the mingw64 gcc dir or remove the --query-driver flag if you don't need it.
-
-In the lua/lsp/clangd_flags.lua file, you can customize the clangd flags according to your needs.
-The current configuration includes flags for:
-
-- OpenTwin directies
-- MINGW-w64 gcc toolchain and the stdlib headers
-
 ## Requirements
 
 - Neovim (recommended 0.8+) with:
