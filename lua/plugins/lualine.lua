@@ -43,7 +43,7 @@ return {
                     lualine_a = { "filename" },
                     lualine_b = { "diff", "diagnostics" },
                     lualine_c = {},
-                    lualine_x = { copilot_status, "branch", "encoding", "fileformat", "filetype" },
+                    lualine_x = { copilot_status, "branch", "encoding", "filetype" },
                     lualine_y = { "progress" },
                     lualine_z = { "location" },
                 },

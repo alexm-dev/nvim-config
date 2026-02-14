@@ -5,11 +5,15 @@ local function map(mode, lhs, rhs, desc)
 end
 
 map("n", "<leader>w", "<CMD>update<CR>", "Save")
+map("n", "<c-s>", "<CMD>update<CR>", "Save")
 map("n", "<leader>q", "<CMD>q<CR>", "Quit")
 
 map("n", "<leader>o", "<CMD>Oil<CR>", "File Browser (Oil)")
 map("n", "<leader>f", "<CMD>FzfLua files<CR>", "Picker")
-map("n", "<leader>b", "<CMD>FzfLua buffers<CR>", "Buffers")
+
+map("n", "<leader>bf", "<CMD>FzfLua buffers<CR>", "Buffers")
+map("n", "<leader>bb", "<CMD>bnext<CR>", "Next Buffer")
+
 map("n", "<leader>g", "<CMD>FzfLua live_grep<CR>", "Grep")
 map("n", "<leader>t", "<CMD>FzfLua grep_visual<CR>", "Grep Text")
 
