@@ -18,7 +18,8 @@ return {
 
     {
         "mrcjkb/rustaceanvim",
-        version = "^7", -- Recommended
-        lazy = false, -- This plugin is already lazy
+        version = "^7",
+        lazy = false,
+        ft = { "rust" },
     },
 }

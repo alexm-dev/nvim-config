@@ -2,6 +2,7 @@ return {
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
+        event = { "BufReadPost", "BufNewFile" },
         opts = {
             indent = { char = "│" },
             scope = { enabled = false },
@@ -14,6 +15,7 @@ return {
     {
         "nvim-mini/mini.indentscope",
         version = false,
+        event = { "BufReadPost", "BufNewFile" },
         opts = function()
             return {
                 symbol = "│",
