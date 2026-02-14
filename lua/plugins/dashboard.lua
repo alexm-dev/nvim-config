@@ -27,8 +27,8 @@ return {
                     center = {
                         { action = 'FzfLua files',                                      desc = " Find File",       icon = " ", key = "f" },
                         { action = 'FzfLua oldfiles',                            desc = " Recent Files",    icon = " ", key = "r" },
-                        { action = 'Neotree',    desc = " File Broswer",    icon = "󰷏 ", key = "b" },
-                        { action = 'FzfLua grep-visual',                           desc = " Find Text",       icon = " ", key = "g" },
+                        { action = 'Oil',    desc = " File Broswer",    icon = "󰷏 ", key = "b" },
+                        { action = 'FzfLua grep_visual',                           desc = " Find Text",       icon = " ", key = "g" },
                         { action = function() require("fzf-lua").files({ cwd = vim.fn.stdpath("config"), prompt = "Config❯ " }) end,
                         desc = " Config", icon = " ", key = "c" },
                         { action = "Lazy",                                                      desc = " Plugins",         icon = "󰒲 ", key = "l" },
