@@ -4,7 +4,7 @@ return {
         branch = "main",
         version = false,
         build = ":TSUpdate",
-        event = { "VeryLazy" },
+        event = { "BufReadPost", "BufNewFile" },
         cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
         opts_extend = { "ensure_installed" },
         opts = {

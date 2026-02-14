@@ -1,7 +1,7 @@
 return {
     {
         "nvim-lualine/lualine.nvim",
-        lazy = false,
+        event = "VeryLazy",
         opts = {
             options = {
                 section_separators = { left = "|", Right = "|" },

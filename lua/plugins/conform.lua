@@ -1,5 +1,6 @@
 return {
     "stevearc/conform.nvim",
+    event = "BufWritePre",
     dependencies = { "williamboman/mason.nvim", "WhoIsSethDaniel/mason-tool-installer.nvim" },
     config = function()
         local conform = require("conform")

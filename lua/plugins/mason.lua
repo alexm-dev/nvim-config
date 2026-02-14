@@ -4,6 +4,9 @@ return {
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+
     config = function()
         require("mason").setup()
 
