@@ -7,9 +7,20 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         opts = {
             ensure_installed = {
-                "bash", "c", "cpp" , "json", "lua", "luadoc", "markdown",
-                "markdown_inline", "python", "query", "regex",
-                "rust", "toml", "yaml",
+                "bash",
+                "c",
+                "cpp",
+                "json",
+                "lua",
+                "luadoc",
+                "markdown",
+                "markdown_inline",
+                "python",
+                "query",
+                "regex",
+                "rust",
+                "toml",
+                "yaml",
             },
         },
         config = function(_, opts)
@@ -30,7 +41,9 @@ return {
                 group = vim.api.nvim_create_augroup("user_treesitter", { clear = true }),
                 callback = function(ev)
                     local lang = vim.treesitter.language.get_lang(ev.match)
-                    if not lang then return end
+                    if not lang then
+                        return
+                    end
 
                     if vim.treesitter.query.get(lang, "highlights") then
                         vim.treesitter.start(ev.buf)

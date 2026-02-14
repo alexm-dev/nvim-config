@@ -1,0 +1,96 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+
+# Local machine overrides
+lua/local.lua
+# Optional template is safe to commit: lua/local.template.lua
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Vim / Neovim swap/backup/temp files
+*.swp
+*.swo
+*.swn
+*.un~
+*~             # editor backup files
+Session.vim
+tags
+
+# Neovim state/caches (these are typically in XDG dirs; ignore local caches if present)
+.cache/
+.local/share/nvim/
+.local/state/nvim/
+# If you only want to ignore repo-local caches, adjust the above to the specific path(s).
+
+
+# Node / npm
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.pyc
+*.pyo
+
+# LuaRocks / C modules
+luarocks-*
+*.so
+
+# Build artefacts / compiled files
+build/
+dist/
+release/
+target/         # Rust
+*.o
+*.obj
+*.exe
+*.dll
+*.out
+*.class
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# Logs
+*.log
+
+# Misc
+*.zip
+*.tar.gz
+*.gz
+*.7z
+
+# Secrets
+*.pem
+*.key
+.env
+.env.*  # environment files with secrets
+
+# OS temp/trash
+ehthumbs.db
+Icon?

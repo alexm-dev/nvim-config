@@ -1,57 +1,65 @@
+local function copilot_status()
+    local client = vim.lsp.get_clients({ name = "copilot" })[1]
+    if client then
+        return ""
+    end
+    return ""
+end
+
 return {
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
-        opts = {
-            options = {
-                section_separators = { left = "|", Right = "|" },
-                component_separators = { left = "|", Right = "|" },
-                globalstatus = true,
-                theme = {
-                    normal = {
-                        a = { fg = "#DDDDDD", bg = "NONE" },
-                        b = { fg = "#DDDDDD", bg = "NONE" },
-                        c = { fg = "#DDDDDD", bg = "NONE" },
+        opts = function()
+            local custom_theme = require("lualine.themes.auto")
+
+            custom_theme.insert = custom_theme.normal
+            custom_theme.visual = custom_theme.normal
+            custom_theme.replace = custom_theme.normal
+            custom_theme.command = custom_theme.normal
+
+            return {
+                options = {
+                    theme = custom_theme,
+                    icons_enabled = true,
+                    component_separators = { left = "|", right = "|" },
+                    section_separators = { left = "", right = "" },
+                    disabled_filetypes = {
+                        statusline = {},
+                        winbar = {},
                     },
-                    insert = {
-                        a = { fg = "#51afef", bg = "NONE" },
-                        b = { fg = "#DDDDDD", bg = "NONE" },
-                        c = { fg = "#DDDDDD", bg = "NONE" },
-                    },
-                    visual = {
-                        a = { fg = "#ecbe7b", bg = "NONE" },
-                        b = { fg = "#DDDDDD", bg = "NONE" },
-                        c = { fg = "#DDDDDD", bg = "NONE" },
-                    },
-                    replace = {
-                        a = { fg = "#ff6c6b", bg = "NONE" },
-                        b = { fg = "#DDDDDD", bg = "NONE" },
-                        c = { fg = "#DDDDDD", bg = "NONE" },
-                    },
-                    inactive = {
-                        a = { fg = "#DDDDDD", bg = "NONE" },
-                        b = { fg = "#DDDDDD", bg = "NONE" },
-                        c = { fg = "#DDDDDD", bg = "NONE" },
+                    ignore_focus = {},
+                    always_divide_middle = true,
+                    always_show_tabline = true,
+                    globalstatus = false,
+                    refresh = {
+                        statusline = 1000,
+                        tabline = 1000,
+                        winbar = 1000,
+                        refresh_time = 16,
                     },
                 },
-            },
-            sections = {
-                lualine_a = {},
-                lualine_b = { "filename", "diff" },
-                lualine_c = { "diagnostics" },
-                lualine_x = { "branch", "filetype" },
-                lualine_y = {},
-                lualine_z = { "location" },
-            },
-            inactive_sections = {
-                lualine_a = {},
-                lualine_b = {},
-                lualine_c = { "filename" },
-                lualine_x = {},
-                lualine_y = {},
-                lualine_z = { "location" },
-            },
-            extensions = {},
-        },
+                sections = {
+                    lualine_a = { "filename" },
+                    lualine_b = { "diff", "diagnostics" },
+                    lualine_c = {},
+                    lualine_x = { copilot_status, "branch", "encoding", "fileformat", "filetype" },
+                    lualine_y = { "progress" },
+                    lualine_z = { "location" },
+                },
+                inactive_sections = {
+                    lualine_a = {},
+                    lualine_b = {},
+                    lualine_c = { "filename" },
+                    lualine_x = { "location" },
+                    lualine_y = {},
+                    lualine_z = {},
+                },
+                tabline = {},
+                winbar = {},
+                inactive_winbar = {},
+                extensions = {},
+            }
+        end,
     },
 }
