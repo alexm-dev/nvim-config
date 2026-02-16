@@ -5,25 +5,8 @@ return {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
-        "stevearc/conform.nvim",
     },
     config = function()
-        local conform = require("conform")
-        conform.setup({
-            formatters_by_ft = {
-                lua = { "stylua" },
-            },
-            format_on_save = true,
-            timeout_ms = 5000,
-        })
-
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            pattern = "*",
-            callback = function()
-                conform.format()
-            end,
-        })
-
         require("mason-tool-installer").setup({
             ensure_installed = { "stylua" },
         })
@@ -31,7 +14,7 @@ return {
         local on_attach = function(client, bufnr)
             vim.diagnostic.config({
                 underline = true,
-                update_in_insert = false,
+                update_in_insert = true,
                 virtual_text = { spacing = 2, source = "if_many", prefix = "●" },
                 severity_sort = true,
                 signs = {
@@ -80,7 +63,30 @@ return {
                     },
                 },
             },
-            rust_analyzer = {},
+
+            rust_analyzer = {
+                settings = {
+                    ["rust-analyzer"] = {
+                        cargo = {
+                            allFeatures = false,
+                            loadOutDirsFromCheck = true,
+                        },
+                        check = {
+                            command = "clippy",
+                            extraArgs = { "--no-deps" },
+                        },
+                        files = {
+                            excludeDirs = { "target", ".git" },
+                        },
+                        lens = { enable = true },
+                        inlayHints = {
+                            typeHints = true,
+                            parameterHints = false,
+                            chainingHints = false,
+                        },
+                    },
+                },
+            },
             pyright = {},
         }
 

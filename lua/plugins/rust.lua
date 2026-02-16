@@ -15,11 +15,4 @@ return {
             })
         end,
     },
-
-    {
-        "mrcjkb/rustaceanvim",
-        version = "^7",
-        lazy = false,
-        ft = { "rust" },
-    },
 }

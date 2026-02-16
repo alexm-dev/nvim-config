@@ -11,6 +11,7 @@ o.autoindent = true
 o.cursorline = true
 o.cursorlineopt = "both"
 o.encoding = "UTF-8"
+o.wrap = false
 
 o.tabstop = 4
 o.shiftwidth = 4
@@ -41,3 +42,5 @@ o.fillchars = "eob: "
 
 o.undofile = true
 o.undodir = vim.fn.stdpath("state") .. "/undo"
+
+vim.lsp.set_log_level("off")

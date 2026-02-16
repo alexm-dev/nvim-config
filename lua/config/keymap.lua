@@ -17,4 +17,4 @@ map("n", "<leader>bb", "<CMD>bnext<CR>", "Next Buffer")
 map("n", "<leader>g", "<CMD>FzfLua live_grep<CR>", "Grep")
 map("n", "<leader>t", "<CMD>FzfLua grep_visual<CR>", "Grep Text")
 
-map("n", "<leader>e", "<CMD>Neotree toggle<CR>", "File Explorer")
+map("n", "<leader>e", "<CMD>NvimTreeToggle<CR>", "File Explorer")
