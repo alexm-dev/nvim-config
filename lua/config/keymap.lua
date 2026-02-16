@@ -25,7 +25,7 @@ map("n", "<leader>bb", "<CMD>bnext<CR>", "Next Buffer")
 map("n", "<leader>h", "<CMD>nohlsearch<CR>", "Clear search")
 
 --- FzfLua
-map("n", "<leader>/", "<CMD>FzfLua live_grep<CR>", "Grep")
+map("n", "<leader>g", "<CMD>FzfLua live_grep<CR>", "Grep")
 map("n", "<leader>t", "<CMD>FzfLua grep_visual<CR>", "Grep Text")
 
 -- Window Split --
