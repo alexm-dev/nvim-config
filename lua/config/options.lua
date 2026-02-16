@@ -25,7 +25,7 @@ o.title = true
 o.titlestring = "%t"
 
 o.hidden = true
-o.ttimeoutlen = 50
+o.ttimeoutlen = 0
 
 o.wildmenu = true
 o.showcmd = true
@@ -39,6 +39,10 @@ o.termguicolors = true
 o.signcolumn = "yes"
 o.statuscolumn = "%s%l  "
 o.fillchars = "eob: "
+o.list = true
+o.listchars = {
+    trail = ">",
+}
 
 o.undofile = true
 o.undodir = vim.fn.stdpath("state") .. "/undo"

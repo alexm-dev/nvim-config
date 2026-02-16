@@ -7,4 +7,14 @@ return {
             vim.cmd("colorscheme vague")
         end,
     },
+
+    {
+        "norcalli/nvim-colorizer.lua",
+        event = "BufReadPost",
+        config = function()
+            require("colorizer").setup({
+                "*",
+            })
+        end,
+    },
 }
