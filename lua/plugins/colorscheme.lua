@@ -1,19 +1,10 @@
 return {
     {
-        "ellisonleao/gruvbox.nvim",
-        priority = 1000,
+        "vague-theme/vague.nvim",
         lazy = false,
-        opts = {
-            contrast = "hard",
-            overrides = {
-                FloatBorder = { fg = "#1d2021" },
-                FloatTitle = { fg = "#1d2021" },
-                SnacksPickerBorder = { fg = "#1d2021" },
-            },
-        },
-        config = function(_, opts)
-            require("gruvbox").setup(opts)
-            vim.cmd("colorscheme gruvbox")
+        priority = 1000,
+        config = function()
+            vim.cmd("colorscheme vague")
         end,
     },
 }
