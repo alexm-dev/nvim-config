@@ -32,9 +32,3 @@ Node.js can be installed via Scoop, nvm, or any other method you prefer.
 - Git
 - LazyGit
 - optional: luarocks (if you use LuaRocks-managed modules)
-
-## 💤 LazyVim
-
-Used the starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
-
