@@ -1,28 +1,28 @@
 return {
-    "williamboman/mason.nvim",
-    dependencies = {
-        "williamboman/mason-lspconfig.nvim",
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-    },
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-
-    config = function()
-        require("mason").setup()
-
-        require("mason-lspconfig").setup({
-            automatic_installation = true,
-            ensure_installed = {
-                "rust_analyzer",
-                "lua_ls",
-                "pyright",
-            },
-        })
-
-        require("mason-tool-installer").setup({
+    {
+        "williamboman/mason.nvim",
+        dependencies = {
+            "williamboman/mason-lspconfig.nvim",
+        },
+        cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {
             ensure_installed = {
                 "stylua",
             },
-        })
-    end,
+        },
+
+        config = function()
+            require("mason").setup()
+
+            require("mason-lspconfig").setup({
+                automatic_installation = true,
+                ensure_installed = {
+                    "rust_analyzer",
+                    "lua_ls",
+                    "pyright",
+                },
+            })
+        end,
+    },
 }

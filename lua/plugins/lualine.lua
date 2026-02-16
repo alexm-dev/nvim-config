@@ -1,11 +1,3 @@
-local function copilot_status()
-    local client = vim.lsp.get_clients({ name = "copilot" })[1]
-    if client then
-        return ""
-    end
-    return ""
-end
-
 return {
     {
         "nvim-lualine/lualine.nvim",
@@ -43,7 +35,7 @@ return {
                     lualine_a = { "filename" },
                     lualine_b = { "diff", "diagnostics" },
                     lualine_c = {},
-                    lualine_x = { copilot_status, "branch", "encoding", "filetype" },
+                    lualine_x = { "branch", "encoding", "filetype" },
                     lualine_y = { "progress" },
                     lualine_z = { "location" },
                 },

@@ -2,7 +2,6 @@ return {
     {
         "stevearc/conform.nvim",
         event = "BufWritePre",
-        dependencies = { "williamboman/mason.nvim", "WhoIsSethDaniel/mason-tool-installer.nvim" },
         config = function()
             local conform = require("conform")
             conform.setup({
@@ -20,10 +19,6 @@ return {
                 callback = function()
                     conform.format()
                 end,
-            })
-
-            require("mason-tool-installer").setup({
-                ensure_installed = { "stylua", "rustfmt", "black" },
             })
         end,
     },
