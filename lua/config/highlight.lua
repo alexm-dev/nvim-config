@@ -26,4 +26,11 @@ vim.api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
     end,
 })
 
+-- Highlight on yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
+
 vim.hl.priorities.semantic_tokens = 94

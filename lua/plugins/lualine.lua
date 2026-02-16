@@ -33,9 +33,9 @@ return {
                 },
                 sections = {
                     lualine_a = { "filename" },
-                    lualine_b = { "diff", "diagnostics" },
+                    lualine_b = { "branch", "diff", "diagnostics" },
                     lualine_c = {},
-                    lualine_x = { "branch", "encoding", "filetype" },
+                    lualine_x = { "encoding", "filetype" },
                     lualine_y = { "progress" },
                     lualine_z = { "location" },
                 },

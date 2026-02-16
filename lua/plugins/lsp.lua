@@ -145,7 +145,13 @@ return {
                         },
                     },
                 },
-                pyright = {},
+                clangd = {
+                    cmd = {
+                        "clangd",
+                        "--background-index",
+                        "--compile-commands-dir=" .. vim.fn.fnamemodify(vim.fn.getcwd() .. "/build/debug", ":p"),
+                    },
+                },
             }
 
             for name, cfg in pairs(servers) do
