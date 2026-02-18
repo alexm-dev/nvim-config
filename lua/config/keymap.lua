@@ -7,7 +7,7 @@ end
 -- Save and Quit
 map("n", "<leader>w", "<CMD>update<CR>", "Save")
 map("n", "<c-s>", "<CMD>update<CR>", "Save")
-map("n", "<leader>x", "<CMD>x<CR>", "Save and Quit")
+map("n", "<leader>xw", "<CMD>x<CR>", "Save and Quit")
 
 map("n", "<leader>q", "<CMD>q<CR>", "Quit")
 map("n", "<leader>Q", "<CMD>q!<CR>", "Quit Force")
@@ -25,7 +25,7 @@ map("n", "<leader>bb", "<CMD>bnext<CR>", "Next Buffer")
 map("n", "<leader>h", "<CMD>nohlsearch<CR>", "Clear search")
 
 --- FzfLua
-map("n", "<leader>g", "<CMD>FzfLua live_grep<CR>", "Grep")
+map("n", "<leader>gg", "<CMD>FzfLua live_grep<CR>", "Grep")
 map("n", "<leader>t", "<CMD>FzfLua grep_visual<CR>", "Grep Text")
 
 -- Window Split --
