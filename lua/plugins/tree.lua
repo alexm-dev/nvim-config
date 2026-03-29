@@ -1,23 +1,11 @@
 return {
     {
-        "nvim-tree/nvim-tree.lua",
-        cmd = { "NvimTreeToggle", "NvimTreeOpen" },
+        "nvim-neo-tree/neo-tree.nvim",
         version = "*",
         dependencies = {
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
             "nvim-tree/nvim-web-devicons",
         },
-        config = function()
-            require("nvim-tree").setup({
-                diagnostics = {
-                    enable = true,
-                    show_on_dirs = true,
-                },
-                renderer = {
-                    icons = {
-                        diagnostics_placement = "after",
-                    },
-                },
-            })
-        end,
     },
 }

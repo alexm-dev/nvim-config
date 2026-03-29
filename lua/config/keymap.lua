@@ -13,13 +13,15 @@ map("n", "<leader>q", "<CMD>q<CR>", "Quit")
 map("n", "<leader>Q", "<CMD>q!<CR>", "Quit Force")
 
 -- File Browser
-map("n", "<leader>e", "<CMD>NvimTreeToggle<CR>", "File Explorer")
+map("n", "<leader>e", "<CMD>Neotree toggle<CR>", "File Explorer")
 map("n", "<leader>o", "<CMD>Oil<CR>", "File Browser (Oil)")
 map("n", "<leader>f", "<CMD>FzfLua files<CR>", "Picker")
 
 -- Buffers
 map("n", "<leader>bf", "<CMD>FzfLua buffers<CR>", "Buffers")
 map("n", "<leader>bb", "<CMD>bnext<CR>", "Next Buffer")
+map("n", "<leader>bd", "<CMD>bnext | bd#<CR>", "Close buffer")
+map("n", "<leader>bD", "<CMD>bd!<CR>", "Force close buffer")
 
 -- Search
 map("n", "<leader>h", "<CMD>nohlsearch<CR>", "Clear search")
