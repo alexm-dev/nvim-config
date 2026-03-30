@@ -24,7 +24,7 @@ map("n", "<leader>bd", "<CMD>bnext | bd#<CR>", "Close buffer")
 map("n", "<leader>bD", "<CMD>bd!<CR>", "Force close buffer")
 
 -- Search
-map("n", "<leader>h", "<CMD>nohlsearch<CR>", "Clear search")
+map("n", "<leader>hs", "<CMD>nohlsearch<CR>", "Clear search")
 
 --- FzfLua
 map("n", "<leader>gg", "<CMD>FzfLua live_grep<CR>", "Grep")
@@ -44,3 +44,37 @@ map("n", "<C-Up>", "<CMD>resize +2<CR>", "Resize up")
 map("n", "<C-Down>", "<CMD>resize -2<CR>", "Resize down")
 map("n", "<C-Left>", "<CMD>vertical resize -2<CR>", "Resize left")
 map("n", "<C-Right>", "<CMD>vertical resize +2<CR>", "Resize right")
+
+-- LSP Diagnostics
+map("n", "<leader>ld", "<CMD>FzfLua lsp_diagnostics<CR>", "LSP Diagnostics")
+map("n", "<leader>lD", "<CMD>lua vim.diagnostic.goto_next()<CR>", "Next Diagnostic")
+map("n", "<leader>lK", "<CMD>lua vim.diagnostic.goto_prev()<CR>", "Previous Diagnostic")
+map("n", "<leader>lq", "<CMD>lua vim.diagnostic.setloclist()<CR>", "Diagnostics to Location List")
+
+-- LSP Symbols / Definitions / References
+map("n", "<leader>ls", "<CMD>FzfLua lsp_workspace_symbols<CR>", "Workspace Symbols")
+map("n", "<leader>lS", "<CMD>FzfLua lsp_document_symbols<CR>", "Document Symbols")
+map("n", "<leader>ld", "<CMD>FzfLua lsp_definitions<CR>", "Go to Definition")
+map("n", "<leader>lr", "<CMD>FzfLua lsp_references<CR>", "References")
+map("n", "<leader>lm", "<CMD>FzfLua lsp_implementations<CR>", "Implementations")
+
+map("n", "<leader>li", "<CMD>FzfLua lsp_incoming_calls<CR>", "Incoming Calls")
+map("n", "<leader>lo", "<CMD>FzfLua lsp_outgoing_calls<CR>", "Outgoing Calls")
+map("n", "<leader>lt", "<CMD>FzfLua lsp_typedefs<CR>", "Type Definitions")
+map("n", "<leader>la", "<CMD>FzfLua lsp_code_actions<CR>", "Code Actions")
+map("n", "<leader>lf", "<CMD>FzfLua lsp_finder<CR>", "All LSP Locations")
+
+-- Git files / commits
+map("n", "<leader>gf", "<CMD>FzfLua git_files<CR>", "Git Files")
+map("n", "<leader>gc", "<CMD>FzfLua git_commits<CR>", "Git Commits")
+map("n", "<leader>gb", "<CMD>FzfLua git_branches<CR>", "Git Branches")
+map("n", "<leader>gs", "<CMD>FzfLua git_status<CR>", "Git Status")
+
+-- Vim commands & keymaps
+map("n", "<leader>hk", "<CMD>FzfLua keymaps<CR>", "Keymaps")
+map("n", "<leader>hc", "<CMD>FzfLua commands<CR>", "Commands")
+map("n", "<leader>hh", "<CMD>FzfLua help_tags<CR>", "Help Tags")
+
+-- Everything search
+map("n", "<leader>fp", "<CMD>FzfLua resume<CR>", "Fzf Resume")
+map("n", "<leader>fa", "<CMD>FzfLua commands<CR>", "Command Palette")
