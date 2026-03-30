@@ -52,3 +52,6 @@ o.undodir = vim.fn.stdpath("state") .. "/undo"
 
 o.updatetime = 300
 vim.lsp.set_log_level("off")
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
