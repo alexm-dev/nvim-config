@@ -13,7 +13,7 @@ map("n", "<leader>q", "<CMD>q<CR>", "Quit")
 map("n", "<leader>Q", "<CMD>q!<CR>", "Quit Force")
 
 -- File Browser
-map("n", "<leader>e", "<CMD>Neotree toggle<CR>", "File Explorer")
+map("n", "<leader>e", "<CMD>Neotree toggle right<CR>", "File Explorer")
 map("n", "<leader>o", "<CMD>Oil<CR>", "File Browser (Oil)")
 map("n", "<leader>f", "<CMD>FzfLua files<CR>", "Picker")
 
@@ -64,17 +64,41 @@ map("n", "<leader>lt", "<CMD>FzfLua lsp_typedefs<CR>", "Type Definitions")
 map("n", "<leader>la", "<CMD>FzfLua lsp_code_actions<CR>", "Code Actions")
 map("n", "<leader>lf", "<CMD>FzfLua lsp_finder<CR>", "All LSP Locations")
 
--- Git files / commits
-map("n", "<leader>gf", "<CMD>FzfLua git_files<CR>", "Git Files")
-map("n", "<leader>gc", "<CMD>FzfLua git_commits<CR>", "Git Commits")
-map("n", "<leader>gb", "<CMD>FzfLua git_branches<CR>", "Git Branches")
-map("n", "<leader>gs", "<CMD>FzfLua git_status<CR>", "Git Status")
-
 -- Vim commands & keymaps
 map("n", "<leader>hk", "<CMD>FzfLua keymaps<CR>", "Keymaps")
 map("n", "<leader>hc", "<CMD>FzfLua commands<CR>", "Commands")
 map("n", "<leader>hh", "<CMD>FzfLua help_tags<CR>", "Help Tags")
 
--- Everything search
-map("n", "<leader>fp", "<CMD>FzfLua resume<CR>", "Fzf Resume")
-map("n", "<leader>fa", "<CMD>FzfLua commands<CR>", "Command Palette")
+map("n", "<leader>lh", function()
+    local is_enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
+    vim.lsp.inlay_hint.enable(not is_enabled, { bufnr = 0 })
+    local status = not is_enabled and "enabled" or "disabled"
+    print("Inlay hints " .. status)
+end, "Toggle LSP Inlay Hints")
+
+_G.codelens_enabled = false
+
+map("n", "<leader>ll", function()
+    _G.codelens_enabled = not _G.codelens_enabled
+
+    if _G.codelens_enabled then
+        vim.lsp.codelens.refresh()
+        print("CodeLens enabled")
+    else
+        vim.lsp.codelens.clear()
+        print("CodeLens disabled")
+    end
+end, "Toggle LSP CodeLens")
+
+map("n", "<leader>rn", function()
+    local is_rel = vim.wo.relativenumber
+    if is_rel then
+        vim.wo.relativenumber = false
+        vim.wo.number = true
+        print("Line Numbers: Absolute")
+    else
+        vim.wo.relativenumber = true
+        vim.wo.number = true
+        print("Line Numbers: Hybrid")
+    end
+end, "Toggle Relative Lines")

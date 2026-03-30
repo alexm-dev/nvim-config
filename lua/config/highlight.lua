@@ -26,11 +26,20 @@ vim.api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
     end,
 })
 
--- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function()
-        vim.highlight.on_yank()
-    end,
+vim.hl.priorities.semantic_tokens = 94
+
+-- Inlay Hints (inline types/parameters)
+vim.api.nvim_set_hl(0, "LspInlayHint", {
+    fg = "#707070",
+    bg = "#121212",
+    italic = true,
 })
 
-vim.hl.priorities.semantic_tokens = 94
+-- CodeLens
+vim.api.nvim_set_hl(0, "LspCodeLens", {
+    fg = "#569CD6",
+    bold = true,
+})
+
+-- The separator between multiple lenses (if any)
+vim.api.nvim_set_hl(0, "LspCodeLensSeparator", { fg = "#444444" })
