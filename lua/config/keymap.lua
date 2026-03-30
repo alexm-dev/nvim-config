@@ -76,6 +76,7 @@ map("n", "<leader>lh", function()
     print("Inlay hints " .. status)
 end, "Toggle LSP Inlay Hints")
 
+-- Codelens
 _G.codelens_enabled = false
 
 map("n", "<leader>ll", function()
