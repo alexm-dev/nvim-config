@@ -149,7 +149,10 @@ return {
                     cmd = {
                         "clangd",
                         "--background-index",
-                        "--compile-commands-dir=" .. vim.fn.fnamemodify(vim.fn.getcwd() .. "/build/debug", ":p"),
+                        "--compile-commands-dir=" .. vim.fn.fnamemodify("build/debug", ":p"),
+                    },
+                    initialization_options = {
+                        fallbackFlags = { "-fms-compatibility", "-fms-extensions" },
                     },
                 },
             }
