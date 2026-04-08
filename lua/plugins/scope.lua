@@ -1,49 +1,36 @@
 return {
-    -- {
-    --     "lukas-reineke/indent-blankline.nvim",
-    --     main = "ibl",
-    --     event = { "BufReadPost", "BufNewFile" },
-    --     opts = {
-    --         indent = { char = "│" },
-    --         scope = { enabled = false },
-    --         exclude = {
-    --             filetypes = { "dashboard", "alpha", "starter" },
-    --         },
-    --     },
-    -- },
-    --
-    -- {
-    --     "nvim-mini/mini.indentscope",
-    --     version = false,
-    --     event = { "BufReadPost", "BufNewFile" },
-    --     opts = function()
-    --         return {
-    --             symbol = "│",
-    --             draw = {
-    --                 delay = 0,
-    --                 animation = require("mini.indentscope").gen_animation.none(),
-    --             },
-    --             options = { try_as_border = false },
-    --         }
-    --     end,
-    --     init = function()
-    --         vim.api.nvim_create_autocmd("FileType", {
-    --             pattern = {
-    --                 "alpha",
-    --                 "dashboard",
-    --                 "fzf",
-    --                 "help",
-    --                 "lazy",
-    --                 "mason",
-    --                 "neo-tree",
-    --                 "notify",
-    --                 "toggleterm",
-    --                 "trouble",
-    --             },
-    --             callback = function()
-    --                 vim.b.miniindentscope_disable = true
-    --             end,
-    --         })
-    --     end,
-    -- },
+    {
+        "brenton-leighton/multiple-cursors.nvim",
+        version = "*",
+        opts = {},
+        keys = {
+            { "<C-j>", "<Cmd>MultipleCursorsAddDown<CR>", mode = { "n", "x" }, desc = "Add cursor and move down" },
+            { "<C-k>", "<Cmd>MultipleCursorsAddUp<CR>", mode = { "n", "x" }, desc = "Add cursor and move up" },
+
+            {
+                "<Leader>m",
+                "<Cmd>MultipleCursorsAddVisualArea<CR>",
+                mode = { "x" },
+                desc = "Add cursors to the lines of the visual area",
+            },
+
+            { "<Leader>a", "<Cmd>MultipleCursorsAddMatches<CR>", mode = { "n", "x" }, desc = "Add cursors to cword" },
+            {
+                "<Leader>A",
+                "<Cmd>MultipleCursorsAddMatchesV<CR>",
+                mode = { "n", "x" },
+                desc = "Add cursors to cword in previous area",
+            },
+
+            {
+                "<Leader>d",
+                "<Cmd>MultipleCursorsAddJumpNextMatch<CR>",
+                mode = { "n", "x" },
+                desc = "Add cursor and jump to next cword",
+            },
+            { "<Leader>D", "<Cmd>MultipleCursorsJumpNextMatch<CR>", mode = { "n", "x" }, desc = "Jump to next cword" },
+
+            { "<Leader>lk", "<Cmd>MultipleCursorsLock<CR>", mode = { "n", "x" }, desc = "Lock virtual cursors" },
+        },
+    },
 }

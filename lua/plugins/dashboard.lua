@@ -25,14 +25,13 @@ return {
                     header = header_line,
                     -- stylua: ignore
                     center = {
-                        { action = 'FzfLua files',                                      desc = " Find File",       icon = " ", key = "f" },
-                        { action = 'FzfLua oldfiles',                            desc = " Recent Files",    icon = " ", key = "r" },
-                        { action = 'Oil',    desc = " File Broswer",    icon = "󰷏 ", key = "b" },
-                        { action = 'FzfLua grep_visual',                           desc = " Find Text",       icon = " ", key = "g" },
-                        { action = function() require("fzf-lua").files({ cwd = vim.fn.stdpath("config"), prompt = "Config❯ " }) end,
-                        desc = " Config", icon = " ", key = "c" },
-                        { action = "Lazy",                                                      desc = " Plugins",         icon = "󰒲 ", key = "l" },
-                        { action = function() vim.api.nvim_input("<cmd>qa<cr>") end,            desc = " Quit",            icon = " ", key = "q" },
+                        { action = function() Snacks.picker.files() end,                                    desc = " Find File", icon = " ", key = "f" },
+                        { action = function() Snacks.picker.recent() end,                                   desc = " Recent Files", icon = " ", key = "r" },
+                        { action = 'Oil',                                                                   desc = " File Broswer", icon = "󰷏 ", key = "b" },
+                        { action = function() Snacks.picker.grep() end,                                     desc = " Find Text",       icon = " ", key = "g" },
+                        { action = function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,  desc = " Config", icon = " ", key = "c" },
+                        { action = "Lazy",                                                                  desc = " Plugins",  icon = "󰒲 ", key = "l" },
+                        { action = function() vim.api.nvim_input("<cmd>qa<cr>") end,                        desc = " Quit", icon = " ", key = "q" },
                     },
                     footer = function()
                         local stats = require("lazy").stats()

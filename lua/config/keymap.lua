@@ -13,12 +13,12 @@ map("n", "<leader>q", "<CMD>q<CR>", "Quit")
 map("n", "<leader>Q", "<CMD>q!<CR>", "Quit Force")
 
 -- File Browser
-map("n", "<leader>e", "<CMD>Neotree toggle right<CR>", "File Explorer")
+map("n", "<leader>e", function() Snacks.picker.explorer() end, "File Explorer")
 map("n", "<leader>o", "<CMD>Oil<CR>", "File Browser (Oil)")
-map("n", "<leader>f", "<CMD>FzfLua files<CR>", "Picker")
+map("n", "<leader>f", function() Snacks.picker.files() end, "Picker")
 
 -- Buffers
-map("n", "<leader>bf", "<CMD>FzfLua buffers<CR>", "Buffers")
+map("n", "<leader>bf", function() Snacks.picker.buffers() end, "Buffers")
 map("n", "<leader>bb", "<CMD>bnext<CR>", "Next Buffer")
 map("n", "<leader>bd", "<CMD>bnext | bd#<CR>", "Close buffer")
 map("n", "<leader>bD", "<CMD>bd!<CR>", "Force close buffer")
@@ -27,8 +27,8 @@ map("n", "<leader>bD", "<CMD>bd!<CR>", "Force close buffer")
 map("n", "<leader>hs", "<CMD>nohlsearch<CR>", "Clear search")
 
 --- FzfLua
-map("n", "<leader>gg", "<CMD>FzfLua live_grep<CR>", "Grep")
-map("n", "<leader>t", "<CMD>FzfLua grep_visual<CR>", "Grep Text")
+map("n", "<leader>gg", function() Snacks.picker.grep() end, "Grep")
+map({ "n", "x" }, "<leader>t", function() Snacks.picker.grep_word() end, "Grep Text")
 
 -- Window Split --
 map("n", "<leader>sv", "<CMD>vs<CR>", "Vertical split")
@@ -46,28 +46,23 @@ map("n", "<C-Left>", "<CMD>vertical resize -2<CR>", "Resize left")
 map("n", "<C-Right>", "<CMD>vertical resize +2<CR>", "Resize right")
 
 -- LSP Diagnostics
-map("n", "<leader>ld", "<CMD>FzfLua lsp_diagnostics<CR>", "LSP Diagnostics")
+map("n", "<leader>ld", function() Snacks.picker.diagnostics() end, "LSP Diagnostics")
 map("n", "<leader>lD", "<CMD>lua vim.diagnostic.goto_next()<CR>", "Next Diagnostic")
 map("n", "<leader>lK", "<CMD>lua vim.diagnostic.goto_prev()<CR>", "Previous Diagnostic")
 map("n", "<leader>lq", "<CMD>lua vim.diagnostic.setloclist()<CR>", "Diagnostics to Location List")
 
--- LSP Symbols / Definitions / References
-map("n", "<leader>ls", "<CMD>FzfLua lsp_workspace_symbols<CR>", "Workspace Symbols")
-map("n", "<leader>lS", "<CMD>FzfLua lsp_document_symbols<CR>", "Document Symbols")
-map("n", "<leader>ld", "<CMD>FzfLua lsp_definitions<CR>", "Go to Definition")
-map("n", "<leader>lr", "<CMD>FzfLua lsp_references<CR>", "References")
-map("n", "<leader>lm", "<CMD>FzfLua lsp_implementations<CR>", "Implementations")
+map("n", "<leader>ls", function() Snacks.picker.lsp_symbols() end, "Workspace Symbols")
+map("n", "<leader>lS", function() Snacks.picker.lsp_symbols({ tree = true }) end, "Document Symbols")
+map("n", "<leader>ld", function() Snacks.picker.lsp_definitions() end, "Go to Definition")
+map("n", "<leader>lr", function() Snacks.picker.lsp_references() end, "References")
+map("n", "<leader>lm", function() Snacks.picker.lsp_implementations() end, "Implementations")
 
-map("n", "<leader>li", "<CMD>FzfLua lsp_incoming_calls<CR>", "Incoming Calls")
-map("n", "<leader>lo", "<CMD>FzfLua lsp_outgoing_calls<CR>", "Outgoing Calls")
-map("n", "<leader>lt", "<CMD>FzfLua lsp_typedefs<CR>", "Type Definitions")
-map("n", "<leader>la", "<CMD>FzfLua lsp_code_actions<CR>", "Code Actions")
-map("n", "<leader>lf", "<CMD>FzfLua lsp_finder<CR>", "All LSP Locations")
+map("n", "<leader>li", function() Snacks.picker.lsp_incoming_calls() end, "Incoming Calls")
+map("n", "<leader>lo", function() Snacks.picker.lsp_outgoing_calls() end, "Outgoing Calls")
+map("n", "<leader>lt", function() Snacks.picker.lsp_type_definitions() end, "Type Definitions")
+map("n", "<leader>la", function() Snacks.picker.lsp_code_actions() end, "Code Actions")
 
--- Vim commands & keymaps
-map("n", "<leader>hk", "<CMD>FzfLua keymaps<CR>", "Keymaps")
-map("n", "<leader>hc", "<CMD>FzfLua commands<CR>", "Commands")
-map("n", "<leader>hh", "<CMD>FzfLua help_tags<CR>", "Help Tags")
+map("n", "<leader>lf", function() Snacks.picker.lsp_definitions() end, "LSP Locations")
 
 map("n", "<leader>lh", function()
     local is_enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
@@ -76,7 +71,6 @@ map("n", "<leader>lh", function()
     print("Inlay hints " .. status)
 end, "Toggle LSP Inlay Hints")
 
--- Codelens
 _G.codelens_enabled = false
 
 map("n", "<leader>ll", function()

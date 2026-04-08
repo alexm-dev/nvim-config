@@ -7,6 +7,7 @@ return {
             keymap = {
                 preset = "super-tab",
                 ["<Tab>"] = { "select_and_accept", "fallback" },
+                ["<C-q>"] = { "show_documentation" },
             },
             completion = {
                 ghost_text = {
