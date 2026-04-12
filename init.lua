@@ -1,6 +1,5 @@
 require("config.keymap")
 require("config.lazy")
-require("config.pwsh")
 require("config.options")
 require("config.autocmds")
 require("config.highlight")
