@@ -1,8 +1,13 @@
 return {
     {
         "saghen/blink.cmp",
+        dependencies = {
+            "saghen/blink.lib",
+        },
         event = "InsertEnter",
-        build = "cargo build --release",
+        build = function()
+            require("blink.cmp").build():wait(60000)
+        end,
         opts = {
             keymap = {
                 preset = "super-tab",

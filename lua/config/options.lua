@@ -50,8 +50,5 @@ o.undodir = vim.fn.stdpath("state") .. "/undo"
 o.updatetime = 300
 vim.lsp.log.set_level("off")
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.env.CC = "clang"
 vim.env.CXX = "clang++"

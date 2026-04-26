@@ -27,7 +27,6 @@ return {
                     center = {
                         { action = function() Snacks.picker.files() end,                                    desc = " Find File", icon = " ", key = "f" },
                         { action = function() Snacks.picker.recent() end,                                   desc = " Recent Files", icon = " ", key = "r" },
-                        { action = 'Oil',                                                                   desc = " File Broswer", icon = "󰷏 ", key = "b" },
                         { action = function() Snacks.picker.grep() end,                                     desc = " Find Text",       icon = " ", key = "g" },
                         { action = function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,  desc = " Config", icon = " ", key = "c" },
                         { action = "Lazy",                                                                  desc = " Plugins",  icon = "󰒲 ", key = "l" },
