@@ -1,5 +1,4 @@
 return {
-
     {
         "MagicDuck/grug-far.nvim",
         config = function()
