@@ -1,3 +1,22 @@
+local function toggle_codelens(bufnr)
+    bufnr = bufnr or vim.api.nvim_get_current_buf()
+
+    local enabled = not vim.b[bufnr].codelens_enabled
+    vim.b[bufnr].codelens_enabled = enabled
+
+    vim.lsp.codelens.enable(enabled, { bufnr = bufnr })
+
+    vim.notify("CodeLens " .. (enabled and "enabled" or "disabled"))
+end
+
+local function toggle_inlay_hints(bufnr)
+    local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
+
+    vim.lsp.inlay_hint.enable(not enabled, { bufnr = bufnr })
+
+    vim.notify("Inlay hints " .. (not enabled and "enabled" or "disabled"))
+end
+
 local on_attach = function(client, bufnr)
     vim.diagnostic.config({
         underline = true,
@@ -25,6 +44,13 @@ local on_attach = function(client, bufnr)
         })
     end
 
+    vim.g.codelens_enabled = false
+
+    if client.server_capabilities.codeLensProvider then
+        vim.b[bufnr].codelens_enabled = vim.g.codelens_enabled
+        vim.lsp.codelens.enable(vim.g.codelens_enabled, { bufnr = bufnr })
+    end
+
     local opts = { noremap = true, silent = true, buffer = bufnr }
 
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Go to definition" }))
@@ -32,13 +58,6 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
     vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
-    vim.keymap.set(
-        "n",
-        "<leader>cC",
-        vim.lsp.codelens.refresh,
-        vim.tbl_extend("force", opts, { desc = "Refresh codelens" })
-    )
-    vim.keymap.set("n", "<leader>cc", vim.lsp.codelens.run, vim.tbl_extend("force", opts, { desc = "Run codelens" }))
 
     vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic", buffer = bufnr })
     vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic", buffer = bufnr })
@@ -49,6 +68,13 @@ local on_attach = function(client, bufnr)
         vim.diagnostic.setloclist,
         { desc = "Diagnostics to location list", buffer = bufnr }
     )
+    vim.keymap.set("n", "<leader>lc", function()
+        toggle_codelens(bufnr)
+    end, { desc = "Toggle CodeLens", buffer = bufnr })
+
+    vim.keymap.set("n", "<leader>lh", function()
+        toggle_inlay_hints(bufnr)
+    end, { desc = "Toggle Inlay Hints", buffer = bufnr })
 end
 
 local default_opts = {
@@ -101,8 +127,8 @@ local servers = {
                 lens = { enable = true },
                 inlayHints = {
                     typeHints = true,
-                    parameterHints = false,
-                    chainingHints = false,
+                    parameterHints = true,
+                    chainingHints = true,
                 },
             },
         },

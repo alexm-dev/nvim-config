@@ -104,20 +104,6 @@ map("n", "<leader>lh", function()
     print("Inlay hints " .. status)
 end, "Toggle LSP Inlay Hints")
 
-_G.codelens_enabled = false
-
-map("n", "<leader>ll", function()
-    _G.codelens_enabled = not _G.codelens_enabled
-
-    if _G.codelens_enabled then
-        vim.lsp.codelens.refresh()
-        print("CodeLens enabled")
-    else
-        vim.lsp.codelens.clear()
-        print("CodeLens disabled")
-    end
-end, "Toggle LSP CodeLens")
-
 map("n", "<leader>rn", function()
     local is_rel = vim.wo.relativenumber
     if is_rel then

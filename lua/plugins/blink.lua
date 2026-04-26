@@ -15,6 +15,9 @@ return {
                 ["<C-q>"] = { "show_documentation" },
             },
             completion = {
+                documentation = {
+                    auto_show = false,
+                },
                 ghost_text = {
                     enabled = false,
                 },

@@ -31,3 +31,10 @@ end, {
         return vim.tbl_keys(require("snacks.picker.config.sources"))
     end,
 })
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+    pattern = "*.rs",
+    callback = function(args)
+        vim.lsp.codelens.enable(true, { bufnr = args.buf })
+    end,
+})
