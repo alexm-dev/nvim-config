@@ -116,6 +116,9 @@ local servers = {
                 cargo = {
                     allFeatures = false,
                     loadOutDirsFromCheck = true,
+                    buildScripts = {
+                        enable = false,
+                    },
                 },
                 check = {
                     command = "clippy",
