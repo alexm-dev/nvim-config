@@ -11,7 +11,6 @@ vim.pack.add({
     { src = "https://github.com/Kicamon/markdown-table-mode.nvim" },
     { src = "https://github.com/catgoose/nvim-colorizer.lua" },
     { src = "https://github.com/saecki/crates.nvim" },
-    { src = "https://github.com/zbirenbaum/copilot.lua" },
     { src = "https://github.com/windwp/nvim-autopairs" },
     { src = "https://github.com/MagicDuck/grug-far.nvim" },
     { src = "https://github.com/folke/trouble.nvim" },
@@ -172,16 +171,6 @@ require("lualine").setup({
         lualine_y = { "progress" },
         lualine_z = { "location" },
     },
-})
-
-require("copilot").setup({
-    suggestion = {
-        enabled = false,
-        auto_trigger = false,
-        debounce = 60,
-        keymap = { accept = "<M-c>" },
-    },
-    panel = { enabled = false },
 })
 
 require("crates").setup({
