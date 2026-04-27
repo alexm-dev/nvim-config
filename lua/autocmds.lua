@@ -1,38 +1,3 @@
-local required_parsers = {
-    "rust",
-    "cpp",
-    "c",
-    "java",
-    "cmake",
-    "lua",
-    "python",
-}
-
-local missing = {}
-for _, lang in ipairs(required_parsers) do
-    if not pcall(vim.treesitter.query.get, lang, "highlights") then
-        table.insert(missing, lang)
-    end
-end
-
-if #missing > 0 then
-    vim.notify(
-        "Missing native parsers: "
-            .. table.concat(missing, ", ")
-            .. "\nInstall them via your OS package manager (e.g., pacman or paru).",
-        vim.log.levels.WARN
-    )
-end
-
-vim.api.nvim_create_autocmd("FileType", {
-    callback = function(args)
-        local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
-        if lang then
-            pcall(vim.treesitter.start, args.buf, lang)
-        end
-    end,
-})
-
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "rust",
     callback = function()

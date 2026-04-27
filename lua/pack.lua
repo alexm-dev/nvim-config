@@ -18,6 +18,7 @@ vim.pack.add({
     { src = "https://github.com/folke/which-key.nvim" },
     { src = "https://github.com/williamboman/mason.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+    { src = "https://github.com/romus204/tree-sitter-manager.nvim" }
 })
 
 require("vague").setup({ transparent = true })
@@ -34,6 +35,11 @@ require("blink.cmp").setup({
         ghost_text = { enabled = false },
     },
     fuzzy = { implementation = "lua" },
+})
+
+require("tree-sitter-manager").setup({
+    ensure_installed = { "rust", "json", "xml", "toml", "java", "lua", "cmake", "cpp", "c", "python" }
+
 })
 
 _G.Snacks = require("snacks")
