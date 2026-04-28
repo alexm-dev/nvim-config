@@ -3,7 +3,6 @@ vim.pack.add({
     { src = "https://github.com/nvimdev/dashboard-nvim" },
     { src = "https://github.com/saghen/blink.lib" },
     { src = "https://github.com/saghen/blink.cmp" },
-    { src = "https://github.com/folke/snacks.nvim" },
     { src = "https://github.com/stevearc/conform.nvim" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/nvim-lualine/lualine.nvim" },
@@ -13,12 +12,13 @@ vim.pack.add({
     { src = "https://github.com/saecki/crates.nvim" },
     { src = "https://github.com/windwp/nvim-autopairs" },
     { src = "https://github.com/MagicDuck/grug-far.nvim" },
+    { src = "https://github.com/folke/snacks.nvim" },
     { src = "https://github.com/folke/trouble.nvim" },
     { src = "https://github.com/folke/which-key.nvim" },
     { src = "https://github.com/williamboman/mason.nvim" },
     { src = "https://github.com/williamboman/mason-lspconfig.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
-    { src = "https://github.com/romus204/tree-sitter-manager.nvim" }
+    { src = "https://github.com/romus204/tree-sitter-manager.nvim" },
 })
 
 require("vague").setup({ transparent = true })
@@ -38,8 +38,7 @@ require("blink.cmp").setup({
 })
 
 require("tree-sitter-manager").setup({
-    ensure_installed = { "rust", "json", "xml", "toml", "java", "lua", "cmake", "cpp", "c", "python" }
-
+    ensure_installed = { "rust", "json", "xml", "toml", "java", "lua", "cmake", "cpp", "c", "python" },
 })
 
 _G.Snacks = require("snacks")
@@ -59,8 +58,8 @@ Snacks.setup({
                         box = "vertical",
                         border = "rounded",
                         title = "{title} {live} {flags}",
-                        { win = "list",  border = "none" },
-                        { win = "input", height = 1,     border = "top" },
+                        { win = "list", border = "none" },
+                        { win = "input", height = 1, border = "top" },
                     },
                     {
                         win = "preview",
