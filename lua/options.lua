@@ -23,8 +23,10 @@ o.mouse = "a"
 o.title = true
 o.titlestring = "%t"
 
+o.lazyredraw = true
+o.ttyfast = true
 o.hidden = true
-o.ttimeoutlen = 0
+o.ttimeoutlen = 10
 
 o.wildmenu = true
 o.showcmd = true
@@ -48,7 +50,11 @@ o.undofile = true
 o.undodir = vim.fn.stdpath("state") .. "/undo"
 
 o.updatetime = 300
-vim.lsp.log.set_level("off")
+-- vim.lsp.log.set_level("off")
 
-vim.env.CC = "clang"
-vim.env.CXX = "clang++"
+-- vim.env.CC = "clang"
+-- vim.env.CXX = "clang++"
+
+if vim.fn.has("win32") == 1 then
+    vim.opt.shell = "pwsh"
+end

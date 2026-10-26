@@ -19,7 +19,7 @@ end
 
 local on_attach = function(client, bufnr)
     vim.diagnostic.config({
-        underline = true,
+        underline = false,
         update_in_insert = false,
         virtual_text = { spacing = 2, source = "if_many", prefix = "●" },
         severity_sort = true,
@@ -115,13 +115,18 @@ local servers = {
             ["rust-analyzer"] = {
                 cargo = {
                     allFeatures = false,
-                    loadOutDirsFromCheck = true,
+                    loadOutDirsFromCheck = false,
                     buildScripts = {
                         enable = false,
                     },
                 },
+                procMacro = {
+                    enable = false,
+                },
                 check = {
                     command = "clippy",
+                    allTargets = false,
+                    workspace = false,
                     extraArgs = { "--no-deps" },
                 },
                 files = {
@@ -131,22 +136,26 @@ local servers = {
                 inlayHints = {
                     typeHints = true,
                     parameterHints = true,
-                    chainingHints = true,
+                    chainingHints = false,
                 },
             },
         },
     },
 
     clangd = {
-        cmd = { "clangd" },
+        cmd = {
+            "clangd",
+            "--background-index",
+            "--compile-commands-dir=build\\windows-debug\\",
+        },
         filetypes = { "c", "cpp", "objc", "objcpp" },
-        root_markers = { "compile_commands.json", "CMakeLists.txt", ".git" },
+        root_markers = { "CMakeLists.txt", ".git" },
     },
 
-    jdtls = {
-        cmd = { "jdtls" },
-        filetypes = { "java" },
-        root_markers = { "pom.xml", "build.gradle", ".git" },
+    pyright = {
+        cmd = { "pyright-langserver", "--stdio" },
+        filetypes = { "python" },
+        root_markers = { ".git" },
     },
 }
 

@@ -31,7 +31,7 @@ map("n", "<leader>hs", "<CMD>nohlsearch<CR>", "Clear search")
 
 --- FzfLua
 map("n", "<leader>gg", function() picker.grep() end, "Grep")
-map({ "n", "x" }, "<leader>t", function() picker.grep_word() end, "Grep Text")
+map({ "n", "x" }, "<leader>gt", function() picker.grep_word() end, "Grep Text")
 
 -- Window Split --
 map("n", "<leader>sv", "<CMD>vs<CR>", "Vertical split")
@@ -47,6 +47,8 @@ map("n", "<C-Up>", "<CMD>resize +2<CR>", "Resize up")
 map("n", "<C-Down>", "<CMD>resize -2<CR>", "Resize down")
 map("n", "<C-Left>", "<CMD>vertical resize -2<CR>", "Resize left")
 map("n", "<C-Right>", "<CMD>vertical resize +2<CR>", "Resize right")
+
+map("n", "<leader>t", function() Snacks.terminal() end, "Terminal")
 
 -- LSP Diagnostics
 map("n", "<leader>ld", function() picker.diagnostics() end, "LSP Diagnostics")
@@ -67,7 +69,6 @@ map("n", "<leader>la", function() picker.lsp_code_actions() end, "Code Actions")
 
 map("n", "<leader>lf", function() picker.lsp_definitions() end, "LSP Locations")
 
-map("n", "<leader>cg", "<cmd>Copilot toggle<CR>", "Toggle Copilot")
 map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", "Diagnostics (Trouble)")
 map("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", "Buffer Diagnostics (Trouble)")
 map("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols (Trouble)")

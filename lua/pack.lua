@@ -18,10 +18,10 @@ vim.pack.add({
     { src = "https://github.com/williamboman/mason.nvim" },
     { src = "https://github.com/williamboman/mason-lspconfig.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
-    { src = "https://github.com/romus204/tree-sitter-manager.nvim" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 })
 
-require("vague").setup({ transparent = true })
+require("vague").setup({})
 vim.cmd("colorscheme vague")
 
 require("blink.cmp").setup({
@@ -31,20 +31,34 @@ require("blink.cmp").setup({
         ["<C-q>"] = { "show_documentation" },
     },
     completion = {
-        documentation = { auto_show = false },
+        documentation = { auto_show = true },
         ghost_text = { enabled = false },
     },
     fuzzy = { implementation = "lua" },
 })
 
-require("tree-sitter-manager").setup({
-    ensure_installed = { "rust", "json", "xml", "toml", "java", "lua", "cmake", "cpp", "c", "python" },
+local langs = { "rust", "json", "xml", "toml", "lua", "cmake", "cpp", "c", "python" }
+require("nvim-treesitter").setup({})
+require("nvim-treesitter").install({ langs })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = langs,
+    callback = function()
+        vim.treesitter.start()
+    end,
 })
 
 _G.Snacks = require("snacks")
 Snacks.setup({
     explorer = { enabled = true },
     notifier = { enabled = true },
+    terminal = {
+        enabled = true,
+        win = {
+            wo = {
+                winbar = "",
+            },
+        },
+    },
     picker = {
         enabled = true,
         layouts = {
@@ -97,8 +111,12 @@ require("conform").setup({
 
     format_on_save = function(bufnr)
         local name = vim.fs.normalize(vim.api.nvim_buf_get_name(bufnr))
+        local ft = vim.bo[bufnr].filetype
 
         if name:match("keymap%.lua") or name:match("init%.lua") then
+            return nil
+        end
+        if ft == "java" then
             return nil
         end
         return {
@@ -164,7 +182,18 @@ require("lualine").setup({
         refresh = { statusline = 1000, tabline = 1000, winbar = 1000, refresh_time = 16 },
     },
     sections = {
-        lualine_a = { { "filename", path = 1 } },
+        lualine_a = {
+            {
+                "filename",
+                path = 1,
+                fmt = function(name)
+                    if vim.bo.buftype == "terminal" then
+                        return vim.o.shell
+                    end
+                    return name
+                end,
+            },
+        },
         lualine_b = { "branch", "diff", "diagnostics" },
         lualine_c = {},
         lualine_x = { "encoding", "filetype" },
@@ -190,7 +219,6 @@ require("grug-far").setup({})
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {
-        "jdtls",
         "lua_ls",
         "rust_analyzer",
         "pyright",
@@ -201,19 +229,18 @@ require("trouble").setup({})
 require("which-key").setup({})
 
 local logo = [[
-███▄▄▄▄      ▄████████  ▄██████▄   ▄█    █▄   ▄█    ▄▄▄▄███▄▄▄▄
-███▀▀▀██▄   ███    ███ ███    ███ ███    ███ ███  ▄██▀▀▀███▀▀▀██▄
-███   ███   ███    █▀  ███    ███ ███    ███ ███▌ ███   ███   ███
-███   ███  ▄███▄▄▄     ███    ███ ███    ███ ███▌ ███   ███   ███
-███   ███ ▀▀███▀▀▀     ███    ███ ███    ███ ███▌ ███   ███   ███
-███   ███   ███    █▄  ███    ███ ███    ███ ███  ███   ███   ███
-███   ███   ███    ███ ███    ███ ███    ███ ███  ███   ███   ███
- ▀█   █▀    ██████████  ▀██████▀   ▀██████▀  █▀    ▀█   ███   █▀
+▓▓▓▓▓▓▓▓▓▓▌▐ ▓▓▓▓▓▓▓▓▓▓▌▐  ▓▓▓▓▓▓▓▓▓▓▌▐ ▓▓▌▐    ▓▓▌▐ ▓▓▌▐ ▓▓▓▓▓▄▓▓▓▓▌▐
+▓▓▌▐    ▓▓▌▐ ▓▓▌▐    ▓▓▌▐  ▓▓▌▐    ▓▓▌▐ ▓▓▌▐    ▓▓▌▐      ▓▓▌▐▐▓▌▐▓▓▌▐
+▓▓▌▐    ▓▓▌▐ ▓▓▌▐          ▓▓▌▐    ▓▓▌▐ ▓▓▌▐    ▓▓▌▐ ▓▓▌▐ ▓▓▌▐▐▓▌▐▓▓▌▐
+▓▓▌▐    ▓▓▌▐ ▓▓▓▓▓▓▓▓▐     ▓▓▌▐    ▓▓▌▐ ▓▓▌▐    ▓▓▌▐ ▓▓▌▐ ▓▓▌▐    ▓▓▌▐
+██▌▐    ██▌▐ ██▌▐          ██▌▐    ██▌▐ ██▌▐    ██▌▐ ██▌▐ ██▌▐    ██▌▐
+▓▓▌▐    ▓▓▌▐ ▓▓▌▐     ▓▓▌▐ ▓▓▌▐    ▓▓▌▐ ▓▓▌▐  ▓▓▓▓▌▐ ▓▓▌▐ ▓▓▌▐    ▓▓▌▐
+▒▒▌▐    ▒▒▌▐ ▒▒▌▐     ▒▒▌▐ ▒▒▌▐    ▒▒▌▐ ▒▒▌▐  ▒▒▌▐   ▒▒▌▐ ▒▒▌▐    ▒▒▌▐
+░░▌▐    ░░▌▐ ░░░░░░░░░░░▌▐ ░░░░░░░░░░▌▐ ░░░░░░░▌▐    ░░▌▐ ░░▌▐    ░░▌▐
             ]]
 
 logo = string.rep("\n", 8) .. logo .. "\n\n"
 local header_line = vim.split(logo, "\n")
-local picker = Snacks.picker
 local dashboard_opts = {
     theme = "doom",
     hide = { statusline = false },
@@ -222,7 +249,7 @@ local dashboard_opts = {
         center = {
             {
                 action = function()
-                    picker.files()
+                    Snacks.picker.files()
                 end,
                 desc = " Find File",
                 icon = " ",
@@ -230,7 +257,7 @@ local dashboard_opts = {
             },
             {
                 action = function()
-                    picker.recent()
+                    Snacks.picker.recent()
                 end,
                 desc = " Recent Files",
                 icon = " ",
@@ -238,7 +265,7 @@ local dashboard_opts = {
             },
             {
                 action = function()
-                    picker.grep()
+                    Snacks.picker.grep()
                 end,
                 desc = " Find Text",
                 icon = " ",
@@ -246,7 +273,7 @@ local dashboard_opts = {
             },
             {
                 action = function()
-                    picker.files({ cwd = vim.fn.stdpath("config") })
+                    Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
                 end,
                 desc = " Config",
                 icon = " ",
