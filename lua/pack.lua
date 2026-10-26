@@ -51,6 +51,17 @@ _G.Snacks = require("snacks")
 Snacks.setup({
     explorer = { enabled = true },
     notifier = { enabled = true },
+    scope = { enabled = true },
+    indent = {
+        enabled = true,
+        indent = { enabled = false },
+        only_scope = true,
+        scope = {
+            enabled = true,
+            char = "│",
+            hl = "SnacksIndentScope",
+        },
+    },
     terminal = {
         enabled = true,
         win = {
@@ -219,6 +230,8 @@ require("grug-far").setup({})
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {
+        "clangd",
+        "bashls",
         "lua_ls",
         "rust_analyzer",
         "pyright",
