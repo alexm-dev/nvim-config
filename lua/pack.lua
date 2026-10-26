@@ -51,9 +51,9 @@ _G.Snacks = require("snacks")
 Snacks.setup({
     explorer = { enabled = true },
     notifier = { enabled = true },
-    scope = { enabled = true },
     indent = {
         enabled = true,
+        animate = { enabled = false },
         indent = { enabled = false },
         only_scope = true,
         scope = {

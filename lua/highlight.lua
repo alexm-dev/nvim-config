@@ -18,6 +18,10 @@ vim.api.nvim_set_hl(0, "LspCodeLens", { fg = vague.match, bold = true })
 -- The separator between multiple lenses (if any)
 vim.api.nvim_set_hl(0, "LspCodeLensSeparator", { fg = vague.border })
 
+vim.api.nvim_set_hl(0, "SnacksIndentScope", {
+    fg = "#303036",
+})
+
 -- vim.api.nvim_set_hl(0, "Pmenu", { fg = vague.fg, bg = vague.float })
 -- vim.api.nvim_set_hl(0, "PmenuSel", { fg = "NONE", bg = vague.sel })
 -- vim.api.nvim_set_hl(0, "PmenuMatch", { fg = vague.match, bold = true })
