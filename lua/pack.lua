@@ -39,7 +39,7 @@ require("blink.cmp").setup({
 
 local langs = { "rust", "json", "xml", "toml", "lua", "cmake", "cpp", "c", "python" }
 require("nvim-treesitter").setup({})
-require("nvim-treesitter").install({ langs })
+require("nvim-treesitter").install(langs)
 vim.api.nvim_create_autocmd("FileType", {
     pattern = langs,
     callback = function()
