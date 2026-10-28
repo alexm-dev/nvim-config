@@ -38,7 +38,7 @@ o.splitbelow = true
 o.termguicolors = true
 
 o.signcolumn = "yes"
-o.statuscolumn = "%s%l "
+o.statuscolumn = "  %=%l %s"
 o.fillchars = "eob: "
 o.list = true
 o.listchars = {
