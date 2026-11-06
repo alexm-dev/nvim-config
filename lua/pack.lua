@@ -1,5 +1,4 @@
 vim.pack.add({
-    { src = "https://github.com/vague-theme/vague.nvim" },
     { src = "https://github.com/nvimdev/dashboard-nvim" },
     { src = "https://github.com/saghen/blink.lib" },
     { src = "https://github.com/saghen/blink.cmp" },
@@ -19,10 +18,18 @@ vim.pack.add({
     { src = "https://github.com/williamboman/mason-lspconfig.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+    { src = "https://github.com/rebelot/kanagawa.nvim" },
 })
 
-require("vague").setup({})
-vim.cmd("colorscheme vague")
+require("kanagawa").setup({
+    transparent = true,
+    colors = {
+        theme = {
+            all = { ui = { bg_gutter = "none" } },
+        },
+    },
+})
+vim.cmd("colorscheme kanagawa-dragon")
 
 require("blink.cmp").setup({
     keymap = {
@@ -124,12 +131,20 @@ require("conform").setup({
         local name = vim.fs.normalize(vim.api.nvim_buf_get_name(bufnr))
         local ft = vim.bo[bufnr].filetype
 
+        local disabled_ft = {
+            c = true,
+            cpp = true,
+            java = true,
+        }
+
         if name:match("keymap%.lua") or name:match("init%.lua") then
             return nil
         end
-        if ft == "java" then
+
+        if disabled_ft[ft] then
             return nil
         end
+
         return {
             timeout_ms = 5000,
             lsp_fallback = true,
