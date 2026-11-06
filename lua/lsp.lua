@@ -146,7 +146,6 @@ local servers = {
         cmd = {
             "clangd",
             "--background-index",
-            "--compile-commands-dir=build\\windows-debug\\",
         },
         filetypes = { "c", "cpp", "objc", "objcpp" },
         root_markers = { "CMakeLists.txt", ".git" },
