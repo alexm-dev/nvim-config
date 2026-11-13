@@ -194,7 +194,9 @@ require("gitsigns").setup({
     },
 })
 
-require("neogit").setup({})
+require("neogit").setup({
+    status = { recent_commit_count = 50 },
+})
 
 local custom_theme = require("lualine.themes.auto")
 custom_theme.insert = custom_theme.normal
