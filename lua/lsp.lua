@@ -132,11 +132,29 @@ local servers = {
                 files = {
                     excludeDirs = { "target", ".git" },
                 },
-                lens = { enable = true },
+                lens = {
+                    enable = true,
+                    references = {
+                        adt = { enable = true },
+                        trait = { enable = true },
+                        method = { enable = true },
+                        enumVariant = { enable = true },
+                    },
+                },
                 inlayHints = {
                     typeHints = true,
                     parameterHints = true,
                     chainingHints = false,
+                },
+            },
+        },
+        capabilities = {
+            experimental = {
+                commands = {
+                    commands = {
+                        "rust-analyzer.showReferences",
+                        "rust-analyzer.gotoLocation",
+                    },
                 },
             },
         },
