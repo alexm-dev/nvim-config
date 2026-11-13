@@ -5,6 +5,8 @@ vim.pack.add({
     { src = "https://github.com/stevearc/conform.nvim" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
     { src = "https://github.com/nvim-lualine/lualine.nvim" },
+    { src = "https://github.com/NeogitOrg/neogit" },
+    { src = "https://github.com/sindrets/diffview.nvim" },
     { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
     { src = "https://github.com/Kicamon/markdown-table-mode.nvim" },
     { src = "https://github.com/catgoose/nvim-colorizer.lua" },
@@ -191,6 +193,8 @@ require("gitsigns").setup({
         col = 1,
     },
 })
+
+require("neogit").setup({})
 
 local custom_theme = require("lualine.themes.auto")
 custom_theme.insert = custom_theme.normal

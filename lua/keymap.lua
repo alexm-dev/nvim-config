@@ -29,7 +29,7 @@ map("n", "<leader>bD", "<CMD>bd!<CR>", "Force close buffer")
 -- Search
 map("n", "<leader>hs", "<CMD>nohlsearch<CR>", "Clear search")
 
---- FzfLua
+--- Picker
 map("n", "<leader>gg", function() picker.grep() end, "Grep")
 map({ "n", "x" }, "<leader>gt", function() picker.grep_word() end, "Grep Text")
 
@@ -49,6 +49,8 @@ map("n", "<C-Left>", "<CMD>vertical resize -2<CR>", "Resize left")
 map("n", "<C-Right>", "<CMD>vertical resize +2<CR>", "Resize right")
 
 map("n", "<leader>t", function() Snacks.terminal() end, "Terminal")
+
+map("n", "<leader>gg", "<cmd>Neogit<cr>", "Show Neogit UI")
 
 -- LSP Diagnostics
 map("n", "<leader>ld", function() picker.diagnostics() end, "LSP Diagnostics")
