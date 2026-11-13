@@ -1,26 +1,39 @@
 vim.pack.add({
-    { src = "https://github.com/nvimdev/dashboard-nvim" },
-    { src = "https://github.com/saghen/blink.lib" },
-    { src = "https://github.com/saghen/blink.cmp" },
-    { src = "https://github.com/stevearc/conform.nvim" },
-    { src = "https://github.com/lewis6991/gitsigns.nvim" },
-    { src = "https://github.com/nvim-lualine/lualine.nvim" },
-    { src = "https://github.com/NeogitOrg/neogit" },
-    { src = "https://github.com/sindrets/diffview.nvim" },
-    { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
-    { src = "https://github.com/Kicamon/markdown-table-mode.nvim" },
-    { src = "https://github.com/catgoose/nvim-colorizer.lua" },
-    { src = "https://github.com/saecki/crates.nvim" },
-    { src = "https://github.com/windwp/nvim-autopairs" },
-    { src = "https://github.com/MagicDuck/grug-far.nvim" },
-    { src = "https://github.com/folke/snacks.nvim" },
-    { src = "https://github.com/folke/trouble.nvim" },
-    { src = "https://github.com/folke/which-key.nvim" },
+    -- Core
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/williamboman/mason.nvim" },
     { src = "https://github.com/williamboman/mason-lspconfig.nvim" },
-    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+    { src = "https://github.com/folke/snacks.nvim" },
+
+    -- Theme
     { src = "https://github.com/rebelot/kanagawa.nvim" },
+    { src = "https://github.com/nvim-lualine/lualine.nvim" },
+    { src = "https://github.com/nvimdev/dashboard-nvim" },
+    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+    { src = "https://github.com/catgoose/nvim-colorizer.lua" },
+
+    -- Completion
+    { src = "https://github.com/saghen/blink.lib" },
+    { src = "https://github.com/saghen/blink.cmp" },
+
+    -- Editing
+    { src = "https://github.com/stevearc/conform.nvim" },
+    { src = "https://github.com/windwp/nvim-autopairs" },
+    { src = "https://github.com/MagicDuck/grug-far.nvim" },
+    { src = "https://github.com/folke/trouble.nvim" },
+    { src = "https://github.com/folke/which-key.nvim" },
+    { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
+    { src = "https://github.com/Kicamon/markdown-table-mode.nvim" },
+
+    -- Git
+    { src = "https://github.com/lewis6991/gitsigns.nvim" },
+    { src = "https://github.com/NeogitOrg/neogit" },
+    { src = "https://github.com/sindrets/diffview.nvim" },
+
+    -- Rust
+    { src = "https://github.com/saecki/crates.nvim" },
+
+    -- Debugging
     { src = "https://github.com/mfussenegger/nvim-dap" },
     { src = "https://github.com/igorlfs/nvim-dap-view", version = vim.version.range("1.*") },
     { src = "https://github.com/theHamsta/nvim-dap-virtual-text" },
