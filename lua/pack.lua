@@ -19,6 +19,9 @@ vim.pack.add({
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/rebelot/kanagawa.nvim" },
+    { src = "https://github.com/mfussenegger/nvim-dap" },
+    { src = "https://github.com/igorlfs/nvim-dap-view", version = vim.version.range("1.*") },
+    { src = "https://github.com/theHamsta/nvim-dap-virtual-text" },
 })
 
 require("kanagawa").setup({
@@ -236,6 +239,52 @@ require("crates").setup({
         hover = true,
     },
 })
+
+local dap = require("dap")
+dap.adapters.gdb = {
+    type = "executable",
+    command = "gdb",
+    args = { "--interpreter=dap" },
+}
+
+dap.configurations.rust = {
+    {
+        name = "runa",
+        type = "gdb",
+        request = "launch",
+        program = "${workspaceFolder}/target/debug/rn",
+        cwd = "${workspaceFolder}",
+    },
+    {
+        name = "runa (attach)",
+        type = "gdb",
+        request = "attach",
+        pid = function()
+            return require("dap.utils").pick_process({ filter = "rn" })
+        end,
+        cwd = "${workspaceFolder}",
+    },
+}
+
+dap.configurations.cpp = {
+    {
+        name = "Launch",
+        type = "gdb",
+        request = "launch",
+        program = function()
+            return vim.fn.input("Executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        cwd = "${workspaceFolder}",
+    },
+}
+
+dap.configurations.c = dap.configurations.cpp
+
+require("dap-view").setup({
+    auto_toggle = true,
+})
+
+require("nvim-dap-virtual-text").setup({})
 
 require("nvim-autopairs").setup({ disable_filetype = { "FzfLua", "vim" } })
 require("colorizer").setup({ "*" })

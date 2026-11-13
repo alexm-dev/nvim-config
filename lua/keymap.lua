@@ -77,6 +77,15 @@ map("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", "Location List")
 map("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", "Quickfix List")
 map("n", "<leader>?", function() require("which-key").show({ global = false }) end, "Buffer Local Keymaps")
 
+map("n", "<leader>db", function() require("dap").toggle_breakpoint() end, "Breakpoint" )
+map("n", "<leader>dc", function() require("dap").continue() end, "Continue / start")
+map("n", "<leader>dn", function() require("dap").step_over() end, "Step over" )
+map("n", "<leader>di", function() require("dap").step_into() end, "Step into" )
+map("n", "<leader>do", function() require("dap").step_out() end, "Step out" )
+map("n", "<leader>dt", function() require("dap").terminate() end, "Terminate" )
+map("n", "<leader>dr", function() require("dap").repl.toggle() end, "REPL" )
+map({ "n", "v" }, "<leader>dh", function() require("dap.ui.widgets").hover() end, "DAP hover" )
+
 map("n", "<leader>rn", function()
     local is_rel = vim.wo.relativenumber
     if is_rel then
