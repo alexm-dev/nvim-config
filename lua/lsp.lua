@@ -53,21 +53,8 @@ local on_attach = function(client, bufnr)
 
     local opts = { noremap = true, silent = true, buffer = bufnr }
 
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Go to definition" }))
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "List references" }))
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover documentation" }))
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "Code action" }))
     vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename symbol" }))
-
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic", buffer = bufnr })
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic", buffer = bufnr })
-    vim.keymap.set("n", "<leader>ce", vim.diagnostic.open_float, { desc = "Show diagnostic", buffer = bufnr })
-    vim.keymap.set(
-        "n",
-        "<leader>cl",
-        vim.diagnostic.setloclist,
-        { desc = "Diagnostics to location list", buffer = bufnr }
-    )
     vim.keymap.set("n", "<leader>lc", function()
         toggle_codelens(bufnr)
     end, { desc = "Toggle CodeLens", buffer = bufnr })

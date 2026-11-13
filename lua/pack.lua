@@ -253,17 +253,23 @@ dap.adapters.gdb = {
     args = { "--interpreter=dap" },
 }
 
+dap.adapters["rust-gdb"] = {
+    type = "executable",
+    command = "rust-gdb",
+    args = { "--interpreter=dap" },
+}
+
 dap.configurations.rust = {
     {
         name = "runa",
-        type = "gdb",
+        type = "rust-gdb",
         request = "launch",
         program = "${workspaceFolder}/target/debug/rn",
         cwd = "${workspaceFolder}",
     },
     {
         name = "runa (attach)",
-        type = "gdb",
+        type = "rust-gdb",
         request = "attach",
         pid = function()
             return require("dap.utils").pick_process({ filter = "rn" })

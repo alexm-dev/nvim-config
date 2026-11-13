@@ -50,10 +50,7 @@ o.undofile = true
 o.undodir = vim.fn.stdpath("state") .. "/undo"
 
 o.updatetime = 300
--- vim.lsp.log.set_level("off")
-
--- vim.env.CC = "clang"
--- vim.env.CXX = "clang++"
+vim.lsp.log.set_level("off")
 
 if vim.fn.has("win32") == 1 then
     vim.opt.shell = "pwsh"

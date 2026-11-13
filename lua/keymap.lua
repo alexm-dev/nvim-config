@@ -29,11 +29,12 @@ map("n", "<leader>bD", "<CMD>bd!<CR>", "Force close buffer")
 -- Search
 map("n", "<leader>hs", "<CMD>nohlsearch<CR>", "Clear search")
 
---- Picker
+--- Grep / Git
 map("n", "<leader>gg", function() picker.grep() end, "Grep")
 map({ "n", "x" }, "<leader>gt", function() picker.grep_word() end, "Grep Text")
+map("n", "<leader>gn", "<cmd>Neogit<cr>", "Show Neogit UI")
 
--- Window Split --
+-- Window Split
 map("n", "<leader>sv", "<CMD>vs<CR>", "Vertical split")
 map("n", "<leader>sh", "<CMD>sp<CR>", "Horizontal split")
 map("n", "<leader>sx", "<CMD>close<CR>", "Close split")
@@ -50,35 +51,31 @@ map("n", "<C-Right>", "<CMD>vertical resize +2<CR>", "Resize right")
 
 map("n", "<leader>t", function() Snacks.terminal() end, "Terminal")
 
-map("n", "<leader>gg", "<cmd>Neogit<cr>", "Show Neogit UI")
-
 -- LSP Diagnostics
-map("n", "<leader>ld", function() picker.diagnostics() end, "LSP Diagnostics")
-map("n", "<leader>lD", "<CMD>lua vim.diagnostic.goto_next()<CR>", "Next Diagnostic")
-map("n", "<leader>lK", "<CMD>lua vim.diagnostic.goto_prev()<CR>", "Previous Diagnostic")
-map("n", "<leader>lq", "<CMD>lua vim.diagnostic.setloclist()<CR>", "Diagnostics to Location List")
-
+map({ "n", "x" }, "<leader>la", vim.lsp.buf.code_action, "Code action")
+map("n", "<leader>lR", vim.lsp.buf.rename, "Rename symbol")
+map("n", "<leader>ld", function() picker.diagnostics() end, "Diagnostics (picker)")
+map("n", "<leader>lD", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Next diagnostic")
+map("n", "<leader>lK", function() vim.diagnostic.jump({ count = -1, float = true }) end, "Previous diagnostic")
 map("n", "<leader>ls", function() picker.lsp_symbols() end, "Workspace Symbols")
 map("n", "<leader>lS", function() picker.lsp_symbols({ tree = true }) end, "Document Symbols")
 map("n", "<leader>ld", function() picker.lsp_definitions() end, "Go to Definition")
 map("n", "<leader>lr", function() picker.lsp_references() end, "References")
 map("n", "<leader>lm", function() picker.lsp_implementations() end, "Implementations")
-
 map("n", "<leader>li", function() picker.lsp_incoming_calls() end, "Incoming Calls")
 map("n", "<leader>lo", function() picker.lsp_outgoing_calls() end, "Outgoing Calls")
 map("n", "<leader>lt", function() picker.lsp_type_definitions() end, "Type Definitions")
 map("n", "<leader>la", function() picker.lsp_code_actions() end, "Code Actions")
-
 map("n", "<leader>lf", function() picker.lsp_definitions() end, "LSP Locations")
 
 map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", "Diagnostics (Trouble)")
-map("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", "Buffer Diagnostics (Trouble)")
-map("n", "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols (Trouble)")
-map("n", "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", "LSP")
+map("n", "<leader>xX", "<cmd>Trouble diagnostics tggle filter.buf=0<cr>", "Buffer Diagnostics (Trouble)")
+map("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols (Trouble)")
+map("n", "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", "LSP")
 map("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", "Location List")
 map("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", "Quickfix List")
-map("n", "<leader>?", function() require("which-key").show({ global = false }) end, "Buffer Local Keymaps")
 
+-- DAP debugging
 map("n", "<leader>db", function() require("dap").toggle_breakpoint() end, "Breakpoint" )
 map("n", "<leader>dc", function() require("dap").continue() end, "Continue / start")
 map("n", "<leader>dn", function() require("dap").step_over() end, "Step over" )
@@ -87,6 +84,8 @@ map("n", "<leader>do", function() require("dap").step_out() end, "Step out" )
 map("n", "<leader>dt", function() require("dap").terminate() end, "Terminate" )
 map("n", "<leader>dr", function() require("dap").repl.toggle() end, "REPL" )
 map({ "n", "v" }, "<leader>dh", function() require("dap.ui.widgets").hover() end, "DAP hover" )
+
+map("n", "<leader>?", function() require("which-key").show({ global = false }) end, "Buffer Local Keymaps")
 
 map("n", "<leader>rn", function()
     local is_rel = vim.wo.relativenumber
@@ -100,3 +99,12 @@ map("n", "<leader>rn", function()
         print("Line Numbers: Hybrid")
     end
 end, "Toggle Relative Lines")
+
+require("which-key").add({
+    { "<leader>l", group = "LSP" },
+    { "<leader>x", group = "Trouble" },
+    { "<leader>d", group = "Debug" },
+    { "<leader>b", group = "Buffers" },
+    { "<leader>s", group = "Splits" },
+    { "<leader>g", group = "Git / Grep" },
+})
